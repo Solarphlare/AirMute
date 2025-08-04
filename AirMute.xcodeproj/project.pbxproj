@@ -51,6 +51,7 @@
 		3EA87ACB2D8BE109007CBB90 /* Socket in Frameworks */ = {isa = PBXBuildFile; productRef = 3EA87ACA2D8BE109007CBB90 /* Socket */; };
 		3EAC48582C7A92AF00B03795 /* PreferencesWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC48572C7A92AF00B03795 /* PreferencesWindowDelegate.swift */; };
 		3EC4C95B2C7BF41B00DD4AEF /* RPCEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4C95A2C7BF41B00DD4AEF /* RPCEvents.swift */; };
+		3EF762C32E40297C00A989E7 /* UpdateChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF762C22E40297800A989E7 /* UpdateChecker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,7 @@
 		3E9ED34E2C78F18C00FB4370 /* AirMute.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AirMute.entitlements; sourceTree = "<group>"; };
 		3EAC48572C7A92AF00B03795 /* PreferencesWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowDelegate.swift; sourceTree = "<group>"; };
 		3EC4C95A2C7BF41B00DD4AEF /* RPCEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPCEvents.swift; sourceTree = "<group>"; };
+		3EF762C22E40297800A989E7 /* UpdateChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChecker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 			children = (
 				3E1D91622C7914CC00331448 /* RPC */,
 				3E1855C12C78FDDD001861B4 /* Types */,
+				3EF762C12E40296D00A989E7 /* Updates */,
 				3E9ED3492C78F18C00FB4370 /* Assets.xcassets */,
 				3E9ED34E2C78F18C00FB4370 /* AirMute.entitlements */,
 				3E45C9ED2C7959A7000750ED /* Info.plist */,
@@ -244,6 +247,14 @@
 				3E24AEF82D910BDD006E8C14 /* ViewController.swift */,
 			);
 			path = AirMute;
+			sourceTree = "<group>";
+		};
+		3EF762C12E40296D00A989E7 /* Updates */ = {
+			isa = PBXGroup;
+			children = (
+				3EF762C22E40297800A989E7 /* UpdateChecker.swift */,
+			);
+			path = Updates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,6 +352,7 @@
 				3E24AEFB2D911156006E8C14 /* SettingsViewInteractionHandlers.swift in Sources */,
 				3E45C9CC2C793A7F000750ED /* RPCToken.swift in Sources */,
 				3E1D91892C79215E00331448 /* Utils.swift in Sources */,
+				3EF762C32E40297C00A989E7 /* UpdateChecker.swift in Sources */,
 				3E1D91AB2C79387400331448 /* ResponseSubscribe.swift in Sources */,
 				3E1D91B72C79388E00331448 /* RequestUnsubscribe.swift in Sources */,
 				3E1D918B2C7921A200331448 /* Handlers.swift in Sources */,
@@ -508,7 +520,7 @@
 				CODE_SIGN_ENTITLEMENTS = AirMute/AirMute.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 839U72R654;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -523,7 +535,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 2.1.1;
+				MARKETING_VERSION = 2.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cominatyou.AirMute;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -539,7 +551,7 @@
 				CODE_SIGN_ENTITLEMENTS = AirMute/AirMute.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 839U72R654;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -554,7 +566,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 2.1.1;
+				MARKETING_VERSION = 2.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cominatyou.AirMute;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

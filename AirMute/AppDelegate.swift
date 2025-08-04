@@ -16,12 +16,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var statusBarMenuItem: NSStatusItem!
     var statusItem: NSMenuItem!
+    var updateMenuItem = NSMenuItem(title: "Install Update...", action: #selector(openReleasesPage), keyEquivalent: "")
     
     var rpc: RPC?
     
     let windowDelegate = PreferencesWindowDelegate()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        if UserDefaults.standard.bool(forKey: "update_available") {
+            if let installedVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+                let installedVersionSplit = installedVersion.split(separator: ".").compactMap({ i in Int(i) })
+                let latestVersionSplit = UserDefaults.standard.array(forKey: "latest_version") as! [Int]
+            
+                if latestVersionSplit.elementsEqual(installedVersionSplit) {
+                    UserDefaults.standard.set(false, forKey: "update_available")
+                }
+            }
+        }
+        
         makeMenu()
         
         let clientId = UserDefaults.standard.string(forKey: "client_id")?.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -65,18 +77,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 if app.bundleIdentifier == "com.hnc.Discord" {
                     self.statusItemTitle = "Trying to connect..."
                     logger.info("Discord is open.")
-                    Task {
-                        while (true) {
+                    let timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { timer in
+                        Task {
                             do {
                                 try rpc.connect()
-                                break
+                                timer.invalidate()
                             }
                             catch {
                                 logger.error("Connection process threw an exception: \(String(describing: error))")
-                                try? await Task.sleep(nanoseconds: 5_000_000_000)
                             }
                         }
                     }
+                    
+                    timer.fire()
                 }
             }
         }
@@ -109,6 +122,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(audioCaptureDeviceConnected), name: AVCaptureDevice.wasConnectedNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(audioCaptureDeviceWasDisconnected), name: AVCaptureDevice.wasDisconnectedNotification, object: nil)
+        
+        if !UserDefaults.standard.bool(forKey: "update_available") {
+            let timer = Timer.scheduledTimer(withTimeInterval: 60 * 30, repeats: true) { _ in
+                Task {
+                    await UpdateChecker.checkForUpdates()
+                }
+            }
+            
+            timer.fire()
+        }
     }
     
     @objc func audioCaptureDeviceConnected(notification: Notification) {
@@ -148,7 +171,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
             window.styleMask = [.titled, .closable]
             window.title = "AirMute — Settings"
-            window.setContentSize(.init(width: 550, height: 380))
+            if UserDefaults.standard.bool(forKey: "update_available") && rpc?.user != nil {
+                window.setContentSize(.init(width: 550, height: 400))
+            }
+            else {
+                window.setContentSize(.init(width: 550, height: 380))
+            }
             window.center()
             
             window.delegate = windowDelegate
@@ -161,6 +189,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             NSApp.keyWindow?.orderFrontRegardless()
             return
         }
+    }
+    
+    @objc func openReleasesPage() {
+        NSWorkspace.shared.open(URL(string: "https://github.com/Solarphlare/AirMute/releases/latest")!)
     }
     
     
@@ -179,10 +211,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let menu = NSMenu()
         statusItem = NSMenuItem(title: statusItemTitle, action: nil, keyEquivalent: "")
         statusItem.isEnabled = false
-        menu.addItem(statusItem)
+        updateMenuItem.isHidden = !UserDefaults.standard.bool(forKey: "update_available")
         
+        menu.addItem(statusItem)
+        menu.addItem(updateMenuItem)
         menu.addItem(NSMenuItem(title: "Settings...", action: #selector(launchPreferences), keyEquivalent: ""))
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate), keyEquivalent: ""))
+        
         
         statusBarMenuItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         statusBarMenuItem.menu = menu
