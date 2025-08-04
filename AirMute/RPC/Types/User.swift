@@ -5,13 +5,18 @@ private enum UserError: Error {
     case userHasNoAvatar
 }
 
+public struct AvatarDecorationData: Codable {
+    public let asset: String
+    public let skuId: String?
+}
+
 public class User: Codable {
     public let id: String
     public let username: String
     public let globalName: String
     public let discriminator: String
     public let avatar: String?
-    public let avatarDecorationData: String?
+    public let avatarDecorationData: AvatarDecorationData?
     public let bot: Bool?
     public let system: Bool?
     public let mfaEnabled: Bool?
