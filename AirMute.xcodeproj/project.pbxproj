@@ -36,7 +36,6 @@
 		3E1D91B72C79388E00331448 /* RequestUnsubscribe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1D91B22C79388E00331448 /* RequestUnsubscribe.swift */; };
 		3E24AEF62D9109AD006E8C14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E24AEF42D9109AD006E8C14 /* Main.storyboard */; };
 		3E24AEF92D910BDF006E8C14 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E24AEF82D910BDD006E8C14 /* ViewController.swift */; };
-		3E24AEFB2D911156006E8C14 /* SettingsViewInteractionHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E24AEFA2D91114A006E8C14 /* SettingsViewInteractionHandlers.swift */; };
 		3E2AE76B2C7A2C540003D244 /* EventVoiceConnectionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2AE76A2C7A2C540003D244 /* EventVoiceConnectionStatus.swift */; };
 		3E2AE76D2C7A309C0003D244 /* MuteStateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2AE76C2C7A309C0003D244 /* MuteStateHandler.swift */; };
 		3E45C9C72C7939AB000750ED /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E45C9C62C7939AB000750ED /* RequestError.swift */; };
@@ -84,7 +83,6 @@
 		3E1D91B22C79388E00331448 /* RequestUnsubscribe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestUnsubscribe.swift; sourceTree = "<group>"; };
 		3E24AEF52D9109AD006E8C14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3E24AEF82D910BDD006E8C14 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		3E24AEFA2D91114A006E8C14 /* SettingsViewInteractionHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewInteractionHandlers.swift; sourceTree = "<group>"; };
 		3E2AE76A2C7A2C540003D244 /* EventVoiceConnectionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventVoiceConnectionStatus.swift; sourceTree = "<group>"; };
 		3E2AE76C2C7A309C0003D244 /* MuteStateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuteStateHandler.swift; sourceTree = "<group>"; };
 		3E45C9C62C7939AB000750ED /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
@@ -243,7 +241,6 @@
 				3E2AE76C2C7A309C0003D244 /* MuteStateHandler.swift */,
 				3EC4C95A2C7BF41B00DD4AEF /* RPCEvents.swift */,
 				3E5888A92D9100A000566F27 /* SettingsView.swift */,
-				3E24AEFA2D91114A006E8C14 /* SettingsViewInteractionHandlers.swift */,
 				3E24AEF82D910BDD006E8C14 /* ViewController.swift */,
 			);
 			path = AirMute;
@@ -349,7 +346,6 @@
 				3E1D91A12C7925AA00331448 /* HTTPError.swift in Sources */,
 				3E1D91B52C79388E00331448 /* RequestAuthorize.swift in Sources */,
 				3E45C9EC2C794CC1000750ED /* Controls.swift in Sources */,
-				3E24AEFB2D911156006E8C14 /* SettingsViewInteractionHandlers.swift in Sources */,
 				3E45C9CC2C793A7F000750ED /* RPCToken.swift in Sources */,
 				3E1D91892C79215E00331448 /* Utils.swift in Sources */,
 				3EF762C32E40297C00A989E7 /* UpdateChecker.swift in Sources */,
@@ -520,7 +516,7 @@
 				CODE_SIGN_ENTITLEMENTS = AirMute/AirMute.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 839U72R654;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -536,7 +532,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 2.2.1;
+				MARKETING_VERSION = 2.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cominatyou.AirMute;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -552,7 +548,7 @@
 				CODE_SIGN_ENTITLEMENTS = AirMute/AirMute.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 839U72R654;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -568,7 +564,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 2.2.1;
+				MARKETING_VERSION = 2.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cominatyou.AirMute;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

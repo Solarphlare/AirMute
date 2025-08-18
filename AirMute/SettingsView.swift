@@ -1,4 +1,5 @@
 import SwiftUI
+import ServiceManagement
 
 struct SettingsView: View {
     @AppStorage("client_id") private var clientId = ""
@@ -9,6 +10,8 @@ struct SettingsView: View {
     
     @Environment(\.openURL) private var openURL
     @FocusState private var focusState: FocusedField?
+    
+    @State private var attemptingToUpdateStartupPreference = false
     
     var body: some View {
         let user = (NSApplication.shared.delegate as! AppDelegate).rpc?.user
@@ -117,7 +120,27 @@ struct SettingsView: View {
                 .font(.system(size: 11))
         }
         .onChange(of: launchOnStartup) {
-            launchOnStartupStateChanged(to: launchOnStartup)
+            if attemptingToUpdateStartupPreference { return }
+            attemptingToUpdateStartupPreference = true
+            
+            if launchOnStartup {
+                do {
+                    try SMAppService.mainApp.register()
+                }
+                catch {
+                    launchOnStartup = false
+                }
+            }
+            else {
+                do {
+                    try SMAppService.mainApp.unregister()
+                }
+                catch {
+                    launchOnStartup = true
+                }
+            }
+            
+            attemptingToUpdateStartupPreference = false
         }
         .onAppear {
             // Wrangling the default SwiftUI focus
