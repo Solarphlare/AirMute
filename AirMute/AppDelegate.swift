@@ -43,6 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
                 try SMAppService.mainApp.register()
                 UserDefaults.standard.set(true, forKey: "migrated_to_service_management")
+                UserDefaults.standard.removeObject(forKey: "launch_on_startup")
                 logger.info("Successfully migrated login task to SMAppService.")
             }
             catch {

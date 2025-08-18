@@ -5,13 +5,13 @@ struct SettingsView: View {
     @AppStorage("client_id") private var clientId = ""
     @AppStorage("client_secret") private var clientSecret = ""
     @AppStorage("click_to_undeafen") private var clickToUndeafen = true
-    @AppStorage("launch_on_startup") private var launchOnStartup = false
     @AppStorage("update_available") private var updateAvailable = false
     
     @Environment(\.openURL) private var openURL
     @FocusState private var focusState: FocusedField?
     
-    @State private var attemptingToUpdateStartupPreference = false
+    @State private var programaticallyChangingStartupSwitch = false
+    @State private var launchOnStartup = SMAppService.mainApp.status == .enabled
     
     var body: some View {
         let user = (NSApplication.shared.delegate as! AppDelegate).rpc?.user
@@ -120,8 +120,8 @@ struct SettingsView: View {
                 .font(.system(size: 11))
         }
         .onChange(of: launchOnStartup) {
-            if attemptingToUpdateStartupPreference { return }
-            attemptingToUpdateStartupPreference = true
+            if programaticallyChangingStartupSwitch { return }
+            programaticallyChangingStartupSwitch = true
             
             if launchOnStartup {
                 do {
@@ -140,7 +140,7 @@ struct SettingsView: View {
                 }
             }
             
-            attemptingToUpdateStartupPreference = false
+            programaticallyChangingStartupSwitch = false
         }
         .onAppear {
             // Wrangling the default SwiftUI focus
