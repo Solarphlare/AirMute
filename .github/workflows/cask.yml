@@ -1,0 +1,105 @@
+name: Update Homebrew Cask
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+env:
+  TAP_OWNER: Solarphlare
+  TAP_REPO: homebrew-airmute
+  CASK_PATH: Casks/airmute.rb
+  TAP_BRANCH: master
+
+jobs:
+  update-cask:
+    # Skip prereleases.
+    if: ${{ !github.event.release.prerelease }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Extract Release Info
+        id: rel
+        run: |
+          set -euo pipefail
+          tag='${{ github.event.release.tag_name }}'
+          version="${tag#v}"  # strip leading "v" if present
+
+          dmg_url=$(jq -r '
+            .release.assets[]
+            | select(.name == "AirMute.dmg"
+                     or .content_type == "application/x-apple-diskimage"
+                     or (.name|test("(?i)\\.dmg$")))
+            | .browser_download_url
+          ' <<< '${{ toJson(github.event) }}' | head -n1)
+
+          if [ -z "$dmg_url" ] || [ "$dmg_url" = "null" ]; then
+            echo "No suitable DMG asset found on this release." >&2
+            echo "Assets on the release were:" >&2
+            jq -r '.release.assets[].name' <<< '${{ toJson(github.event) }}' >&2
+            exit 1
+          fi
+
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "dmg_url=$dmg_url" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout Tap Repo
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.TAP_OWNER }}/${{ env.TAP_REPO }}
+          ref: ${{ env.TAP_BRANCH }}
+          token: ${{ secrets.TAP_PUSH_TOKEN }}
+          path: tap
+
+      - name: Get Current Cask Version
+        id: current
+        run: |
+          set -euo pipefail
+          file="tap/${{ env.CASK_PATH }}"
+          if ! [ -f "$file" ]; then
+            echo "Cask file not found at $file" >&2
+            exit 1
+          fi
+          cv=$(grep -E '^\s*version\s+"[^"]+"' "$file" | sed -E 's/.*version\s+"([^"]+)".*/\1/')
+          echo "current_version=$cv" >> "$GITHUB_OUTPUT"
+          echo "Current cask version: $cv"
+
+      - name: Compute SHA256
+        if: ${{ steps.current.outputs.current_version != steps.rel.outputs.version }}
+        id: sha
+        run: |
+          set -euo pipefail
+          tmp=$(mktemp)
+          curl -fsSL '${{ steps.rel.outputs.dmg_url }}' -o "$tmp"
+          sha=$(shasum -a 256 "$tmp" | awk '{print $1}')
+          echo "sha256=$sha" >> "$GITHUB_OUTPUT"
+          echo "SHA256: $sha"
+
+      - name: Bump Cask
+        if: ${{ steps.current.outputs.current_version != steps.rel.outputs.version }}
+        run: |
+          set -euo pipefail
+          file="tap/${{ env.CASK_PATH }}"
+          v='${{ steps.rel.outputs.version }}'
+          s='${{ steps.sha.outputs.sha256 }}'
+          sed -i -E "s/^(\s*version\s+\")[^\"]+(\")/\\1${v}\\2/" "$file"
+          sed -i -E "s/^(\s*sha256\s+\")[^\"]+(\")/\\1${s}\\2/" "$file"
+
+          echo "Diff after bump:"
+          git -C tap diff -- "$file" || true
+
+      - name: Commit and Push Tap
+        if: ${{ steps.current.outputs.current_version != steps.rel.outputs.version }}
+        run: |
+          set -euo pipefail
+          cd tap
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "${{ env.CASK_PATH }}"
+          git commit -m "AirMute: bump to ${{ steps.rel.outputs.version }}"
+          git push origin "${{ env.TAP_BRANCH }}"
