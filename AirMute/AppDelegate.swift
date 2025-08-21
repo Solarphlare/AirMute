@@ -35,22 +35,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         
-        if !UserDefaults.standard.bool(forKey: "migrated_to_service_management") && UserDefaults.standard.bool(forKey: "launch_on_startup") {
-            let launchAgentFile = FileManager.default.homeDirectoryForCurrentUser.appending(path: "Library/LaunchAgents/AirMute.plist")
-            do {
-                if FileManager.default.fileExists(atPath: launchAgentFile.path(percentEncoded: false)) {
-                    try FileManager.default.removeItem(at: launchAgentFile)
+        if !UserDefaults.standard.bool(forKey: "migrated_to_service_management") {
+            if UserDefaults.standard.bool(forKey: "launch_on_startup") {
+                let launchAgentFile = FileManager.default.homeDirectoryForCurrentUser.appending(path: "Library/LaunchAgents/AirMute.plist")
+                do {
+                    if FileManager.default.fileExists(atPath: launchAgentFile.path(percentEncoded: false)) {
+                        try FileManager.default.removeItem(at: launchAgentFile)
+                    }
+                    try SMAppService.mainApp.register()
+                    UserDefaults.standard.set(true, forKey: "migrated_to_service_management")
+                    UserDefaults.standard.removeObject(forKey: "launch_on_startup")
+                    logger.info("Successfully migrated login task to SMAppService.")
                 }
-                try SMAppService.mainApp.register()
-                UserDefaults.standard.set(true, forKey: "migrated_to_service_management")
-                UserDefaults.standard.removeObject(forKey: "launch_on_startup")
-                logger.info("Successfully migrated login task to SMAppService.")
-            }
-            catch {
-                logger.info("Failed to migrate login task to SMAppService.")
-                return
+                catch {
+                    logger.info("Failed to migrate login task to SMAppService.")
+                    return
+                }
             }
             
+            UserDefaults.standard.set(true, forKey: "migrated_to_service_management")
         }
         
         makeMenu()
