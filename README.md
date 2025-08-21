@@ -18,18 +18,23 @@ https://gist.github.com/user-attachments/assets/f0c74cca-f60f-4415-9f00-cb6a0c23
 - Have the Discord app installed on your Mac. This app doesn't work with the browser version of Discord.
 
 ## Setup
-1. First, download the disk image of the latest version of the app from the [releases](https://github.com/CominAtYou/AirMute/releases/latest) page.
-2. Open the disk image and drag the app to your Applications folder.
-3. Next, head to the [Discord Developer Portal](https://discord.com/developers) and create a new application.
-4. Click OAuth2 in the sidebar. Copy your client ID and client secret.
-5. Add a redirect URI to `http://localhost`.
-6. Launch the app, and click its menu bar icon (it looks like a person with waves) and select "Settings".
+1. First, download the disk image of the latest version of the app from the [releases](https://github.com/CominAtYou/AirMute/releases/latest) page. Open the disk image and drag the app to your Applications folder.
+
+    Or you can install AirMute via Homebrew:
+    ```
+    brew tap solarphlare/airmute
+    brew install --cask airmute
+    ```
+2. Head to the [Discord Developer Portal](https://discord.com/developers) and create a new application.
+3. Click OAuth2 in the sidebar. Copy your client ID and client secret.
+4. Add a redirect URI to `http://localhost`.
+5. Launch the app, and click its menu bar icon (it looks like a person with waves) and select "Settings".
     - If you don't see the settings wndow, it might be behind other windows.
-7. Paste your client ID and secret into this window. Then, close the window.
-8. Quit the app by clicking its menu bar icon and selecting "Quit".
-9. Open Discord if it isn't already open.
-10. Open the app again.
-11. If everything worked correctly, clicking the menu bar icon again should yield a line that says `Inactive - Not in Voice` or `Active - In Voice`.
+6. Paste your client ID and secret into this window, and then close the window.
+7. Quit the app by clicking its menu bar icon and selecting "Quit".
+8. Open Discord if it isn't already open.
+9. Open the app again.
+10. If everything worked correctly, clicking the menu bar icon again should yield a line that says `Inactive - Not in Voice` or `Active - In Voice`.
 
 ## How does this work?
 The Discord allows any application to interface and issue commands to it (with your approval, of course) over RPC. One of the things that RPC allows for is controlling whether or not your mic is muted or not, meaning that the app is able to instruct Discord to toggle the microphone whenever the AirPods are clicked.
