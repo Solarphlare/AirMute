@@ -65,3 +65,8 @@ Click the app's menu bar icon to see if any erorrs are being reported. That shou
 Check the [releases](https://github.com/CominAtYou/AirMute/releases/latest) for a newer version of the app. It might have fixed the issue you're experiencing.
 ### No luck?
 Open an issue, and let me know what's up. I'll take a look and do my best to track down what might be going awry.
+
+## Credits
+- Much of the RPC code was sourced from [aeddi/DiscordRPC](https://github.com/aeddi/DiscordRPC) with some modifications to handle the full authentication lifecycle and support the handling of voice state changes.
+- `AudioInputController` was sourced from https://stackoverflow.com/q/78386629.
+
