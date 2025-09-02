@@ -66,11 +66,13 @@ struct SettingsView: View {
                     TextField(text: $clientId) {
                         Text("Client ID")
                     }
+                    .speechSpellsOutCharacters()
                     .focused($focusState, equals: .id)
                     
                     TextField(text: $clientSecret) {
                         Text("Client Secret")
                     }
+                    .speechSpellsOutCharacters()
                     .focused($focusState, equals: .secret)
                     
                     VStack(alignment: .leading) {
