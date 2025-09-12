@@ -47,6 +47,7 @@
 		3E5888AA2D9100A600566F27 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5888A92D9100A000566F27 /* SettingsView.swift */; };
 		3E9ED3462C78F18B00FB4370 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9ED3452C78F18B00FB4370 /* AppDelegate.swift */; };
 		3E9ED34A2C78F18C00FB4370 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E9ED3492C78F18C00FB4370 /* Assets.xcassets */; };
+		3EA1222A2E73EBE8008A5F48 /* AirMute-Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 3EA122292E73EBE8008A5F48 /* AirMute-Icon.icon */; };
 		3EA87ACB2D8BE109007CBB90 /* Socket in Frameworks */ = {isa = PBXBuildFile; productRef = 3EA87ACA2D8BE109007CBB90 /* Socket */; };
 		3EAC48582C7A92AF00B03795 /* PreferencesWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC48572C7A92AF00B03795 /* PreferencesWindowDelegate.swift */; };
 		3EC4C95B2C7BF41B00DD4AEF /* RPCEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4C95A2C7BF41B00DD4AEF /* RPCEvents.swift */; };
@@ -97,6 +98,7 @@
 		3E9ED3452C78F18B00FB4370 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E9ED3492C78F18C00FB4370 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E9ED34E2C78F18C00FB4370 /* AirMute.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AirMute.entitlements; sourceTree = "<group>"; };
+		3EA122292E73EBE8008A5F48 /* AirMute-Icon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "AirMute-Icon.icon"; sourceTree = "<group>"; };
 		3EAC48572C7A92AF00B03795 /* PreferencesWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowDelegate.swift; sourceTree = "<group>"; };
 		3EC4C95A2C7BF41B00DD4AEF /* RPCEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPCEvents.swift; sourceTree = "<group>"; };
 		3EF762C22E40297800A989E7 /* UpdateChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChecker.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				3EF762C12E40296D00A989E7 /* Updates */,
 				3E9ED3492C78F18C00FB4370 /* Assets.xcassets */,
 				3E9ED34E2C78F18C00FB4370 /* AirMute.entitlements */,
+				3EA122292E73EBE8008A5F48 /* AirMute-Icon.icon */,
 				3E45C9ED2C7959A7000750ED /* Info.plist */,
 				3E24AEF42D9109AD006E8C14 /* Main.storyboard */,
 				3E9ED3452C78F18B00FB4370 /* AppDelegate.swift */,
@@ -319,6 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E9ED34A2C78F18C00FB4370 /* Assets.xcassets in Resources */,
+				3EA1222A2E73EBE8008A5F48 /* AirMute-Icon.icon in Resources */,
 				3E24AEF62D9109AD006E8C14 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,12 +515,12 @@
 		3E9ED3522C78F18C00FB4370 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AirMute-Icon";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AirMute/AirMute.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 839U72R654;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -532,7 +536,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 2.2.2;
+				MARKETING_VERSION = 2.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cominatyou.AirMute;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -543,12 +547,12 @@
 		3E9ED3532C78F18C00FB4370 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AirMute-Icon";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AirMute/AirMute.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 839U72R654;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -564,7 +568,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 2.2.2;
+				MARKETING_VERSION = 2.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cominatyou.AirMute;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
