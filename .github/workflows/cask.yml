@@ -35,12 +35,12 @@ jobs:
                      or .content_type == "application/x-apple-diskimage"
                      or (.name|test("(?i)\\.dmg$")))
             | .browser_download_url
-          ' <<< '${{ toJson(github.event) }}' | head -n1)
+          ' "$GITHUB_EVENT_PATH" | head -n1)
 
           if [ -z "$dmg_url" ] || [ "$dmg_url" = "null" ]; then
             echo "No suitable DMG asset found on this release." >&2
             echo "Assets on the release were:" >&2
-            jq -r '.release.assets[].name' <<< '${{ toJson(github.event) }}' >&2
+            jq -r '.release.assets[].name' "$GITHUB_EVENT_PATH" >&2
             exit 1
           fi
 
