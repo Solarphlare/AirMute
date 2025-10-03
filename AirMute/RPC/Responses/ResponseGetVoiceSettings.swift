@@ -3,10 +3,6 @@ import Foundation
 public class ResponseGetVoiceSettings: Codable {
     let data: ResponseGetVoiceSettingsData
     
-    private enum CodingKeys: String, CodingKey {
-        case data
-    }
-    
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.data = try container.decode(ResponseGetVoiceSettingsData.self, forKey: .data)
@@ -18,6 +14,8 @@ public class ResponseGetVoiceSettings: Codable {
 }
 
 public class ResponseGetVoiceSettingsData: Codable {
+    /// Whether or not the user is muted.
     let mute: Bool
+    /// Whether or not the user is deafened. If this is `true`, `mute` will also be `true`, but not vice versa.
     let deaf: Bool
 }

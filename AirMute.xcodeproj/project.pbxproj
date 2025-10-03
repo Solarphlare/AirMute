@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E0C13BC2C7BC8E500DED3EF /* NumericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0C13BB2C7BC8E500DED3EF /* NumericTextField.swift */; };
 		3E1855C02C78FC42001861B4 /* ResponseGetVoiceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1855BF2C78FC42001861B4 /* ResponseGetVoiceSettings.swift */; };
 		3E1855C32C78FDE3001861B4 /* Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1855C22C78FDE3001861B4 /* Frame.swift */; };
 		3E1D91642C7914E000331448 /* RPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1D91632C7914E000331448 /* RPC.swift */; };
@@ -50,12 +49,15 @@
 		3EA1222A2E73EBE8008A5F48 /* AirMute-Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 3EA122292E73EBE8008A5F48 /* AirMute-Icon.icon */; };
 		3EA87ACB2D8BE109007CBB90 /* Socket in Frameworks */ = {isa = PBXBuildFile; productRef = 3EA87ACA2D8BE109007CBB90 /* Socket */; };
 		3EAC48582C7A92AF00B03795 /* PreferencesWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC48572C7A92AF00B03795 /* PreferencesWindowDelegate.swift */; };
+		3EAC5CD72E8F82B30074193E /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC5CD62E8F82B10074193E /* Preferences.swift */; };
+		3EAC5CD92E8F83330074193E /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC5CD82E8F83320074193E /* Menu.swift */; };
+		3EAC5CDE2E8F8A4F0074193E /* ChannelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC5CDD2E8F8A4F0074193E /* ChannelType.swift */; };
+		3EAC5CE02E8F8C2A0074193E /* ResponseGetSelectedVoiceChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC5CDF2E8F8C220074193E /* ResponseGetSelectedVoiceChannel.swift */; };
 		3EC4C95B2C7BF41B00DD4AEF /* RPCEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4C95A2C7BF41B00DD4AEF /* RPCEvents.swift */; };
 		3EF762C32E40297C00A989E7 /* UpdateChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF762C22E40297800A989E7 /* UpdateChecker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3E0C13BB2C7BC8E500DED3EF /* NumericTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTextField.swift; sourceTree = "<group>"; };
 		3E1855BF2C78FC42001861B4 /* ResponseGetVoiceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseGetVoiceSettings.swift; sourceTree = "<group>"; };
 		3E1855C22C78FDE3001861B4 /* Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frame.swift; sourceTree = "<group>"; };
 		3E1D91632C7914E000331448 /* RPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPC.swift; sourceTree = "<group>"; };
@@ -100,6 +102,10 @@
 		3E9ED34E2C78F18C00FB4370 /* AirMute.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AirMute.entitlements; sourceTree = "<group>"; };
 		3EA122292E73EBE8008A5F48 /* AirMute-Icon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "AirMute-Icon.icon"; sourceTree = "<group>"; };
 		3EAC48572C7A92AF00B03795 /* PreferencesWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowDelegate.swift; sourceTree = "<group>"; };
+		3EAC5CD62E8F82B10074193E /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		3EAC5CD82E8F83320074193E /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		3EAC5CDD2E8F8A4F0074193E /* ChannelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelType.swift; sourceTree = "<group>"; };
+		3EAC5CDF2E8F8C220074193E /* ResponseGetSelectedVoiceChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseGetSelectedVoiceChannel.swift; sourceTree = "<group>"; };
 		3EC4C95A2C7BF41B00DD4AEF /* RPCEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPCEvents.swift; sourceTree = "<group>"; };
 		3EF762C22E40297800A989E7 /* UpdateChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChecker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,6 +125,7 @@
 		3E0C13BD2C7BC90700DED3EF /* Responses */ = {
 			isa = PBXGroup;
 			children = (
+				3EAC5CDF2E8F8C220074193E /* ResponseGetSelectedVoiceChannel.swift */,
 				3E1855BF2C78FC42001861B4 /* ResponseGetVoiceSettings.swift */,
 			);
 			path = Responses;
@@ -128,7 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				3EAC48572C7A92AF00B03795 /* PreferencesWindowDelegate.swift */,
-				3E0C13BB2C7BC8E500DED3EF /* NumericTextField.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -167,6 +173,7 @@
 		3E1D91912C7921E800331448 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				3EAC5CDD2E8F8A4F0074193E /* ChannelType.swift */,
 				3E1D918D2C7921E800331448 /* EventClose.swift */,
 				3E1D918F2C7921E800331448 /* EventReady.swift */,
 				3E2AE76A2C7A2C540003D244 /* EventVoiceConnectionStatus.swift */,
@@ -241,9 +248,11 @@
 				3E45C9E92C7942A3000750ED /* AudioInputController.swift */,
 				3E45C9EE2C7993A5000750ED /* AuthenticationController.swift */,
 				3E45C9EB2C794CC1000750ED /* Controls.swift */,
+				3EAC5CD82E8F83320074193E /* Menu.swift */,
 				3E2AE76C2C7A309C0003D244 /* MuteStateHandler.swift */,
 				3EC4C95A2C7BF41B00DD4AEF /* RPCEvents.swift */,
 				3E5888A92D9100A000566F27 /* SettingsView.swift */,
+				3EAC5CD62E8F82B10074193E /* Preferences.swift */,
 				3E24AEF82D910BDD006E8C14 /* ViewController.swift */,
 			);
 			path = AirMute;
@@ -288,7 +297,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1620;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					3E9ED3412C78F18B00FB4370 = {
 						CreatedOnToolsVersion = 15.4;
@@ -335,9 +344,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E1D91B32C79388E00331448 /* RequestSubscribe.swift in Sources */,
+				3EAC5CD72E8F82B30074193E /* Preferences.swift in Sources */,
 				3E1D91AA2C79387400331448 /* ResponseUnsubscribe.swift in Sources */,
 				3E1D91B42C79388E00331448 /* RequestHandshake.swift in Sources */,
 				3E9ED3462C78F18B00FB4370 /* AppDelegate.swift in Sources */,
+				3EAC5CE02E8F8C2A0074193E /* ResponseGetSelectedVoiceChannel.swift in Sources */,
 				3E1D919F2C79238D00331448 /* NonceError.swift in Sources */,
 				3E1D91942C7921E800331448 /* EventClose.swift in Sources */,
 				3E1D91B62C79388E00331448 /* RequestAuthenticate.swift in Sources */,
@@ -348,6 +359,7 @@
 				3E1D91AC2C79387400331448 /* ResponseAuthorize.swift in Sources */,
 				3E1D91962C7921E800331448 /* EventReady.swift in Sources */,
 				3E1D91A12C7925AA00331448 /* HTTPError.swift in Sources */,
+				3EAC5CDE2E8F8A4F0074193E /* ChannelType.swift in Sources */,
 				3E1D91B52C79388E00331448 /* RequestAuthorize.swift in Sources */,
 				3E45C9EC2C794CC1000750ED /* Controls.swift in Sources */,
 				3E45C9CC2C793A7F000750ED /* RPCToken.swift in Sources */,
@@ -363,6 +375,7 @@
 				3E5888AA2D9100A600566F27 /* SettingsView.swift in Sources */,
 				3E1D916C2C7919E100331448 /* RPCError.swift in Sources */,
 				3EAC48582C7A92AF00B03795 /* PreferencesWindowDelegate.swift in Sources */,
+				3EAC5CD92E8F83330074193E /* Menu.swift in Sources */,
 				3E1D91692C79160300331448 /* Constants.swift in Sources */,
 				3E1D91A32C79384700331448 /* Commands.swift in Sources */,
 				3E45C9EF2C7993A5000750ED /* AuthenticationController.swift in Sources */,
@@ -374,7 +387,6 @@
 				3E1855C32C78FDE3001861B4 /* Frame.swift in Sources */,
 				3E1D91642C7914E000331448 /* RPC.swift in Sources */,
 				3E1D91872C7920B300331448 /* EventError.swift in Sources */,
-				3E0C13BC2C7BC8E500DED3EF /* NumericTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +440,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 839U72R654;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -451,6 +464,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -492,6 +506,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 839U72R654;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -508,6 +523,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
@@ -520,9 +536,8 @@
 				CODE_SIGN_ENTITLEMENTS = AirMute/AirMute.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 839U72R654;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AirMute/Info.plist;
@@ -536,7 +551,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 2.3.0;
+				MARKETING_VERSION = 2.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cominatyou.AirMute;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -552,9 +567,8 @@
 				CODE_SIGN_ENTITLEMENTS = AirMute/AirMute.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 839U72R654;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AirMute/Info.plist;
@@ -568,7 +582,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 2.3.0;
+				MARKETING_VERSION = 2.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cominatyou.AirMute;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

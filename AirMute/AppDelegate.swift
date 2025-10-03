@@ -1,19 +1,31 @@
 import AppKit
 import AVFAudio
 import Combine
-import SwiftUI
 import AVFoundation
-import ServiceManagement
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
     var controller: AudioInputController?
     var cancellable: AnyCancellable?
     var clientInitiatedAction = false
-    var isMicrophoneConnected = false
+    var isMicrophoneConnected = false {
+        didSet {
+            if !isMicrophoneConnected {
+                self.statusItem.title = "Inactive — No Microphone Connected"
+            }
+            else {
+                self.statusItem.title = self.statusItemTitle
+            }
+        }
+    }
     
-    /// This exists as a secondary buffer for status text that isn't the "no microphone connected" text, as that must be displayed over all other text.
-    var statusItemTitle = "Inactive — Discord Not Open"
+    var statusItemTitle = "Inactive — Discord Not Open" {
+        didSet {
+            if isMicrophoneConnected {
+                self.statusItem.title = self.statusItemTitle
+            }
+        }
+    }
     
     var statusBarMenuItem: NSStatusItem!
     var statusItem: NSMenuItem!
@@ -35,27 +47,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         
-        if !UserDefaults.standard.bool(forKey: "migrated_to_service_management") {
-            if UserDefaults.standard.bool(forKey: "launch_on_startup") {
-                let launchAgentFile = FileManager.default.homeDirectoryForCurrentUser.appending(path: "Library/LaunchAgents/AirMute.plist")
-                do {
-                    if FileManager.default.fileExists(atPath: launchAgentFile.path(percentEncoded: false)) {
-                        try FileManager.default.removeItem(at: launchAgentFile)
-                    }
-                    try SMAppService.mainApp.register()
-                    UserDefaults.standard.set(true, forKey: "migrated_to_service_management")
-                    UserDefaults.standard.removeObject(forKey: "launch_on_startup")
-                    logger.info("Successfully migrated login task to SMAppService.")
-                }
-                catch {
-                    logger.info("Failed to migrate login task to SMAppService.")
-                    return
-                }
-            }
-            
-            UserDefaults.standard.set(true, forKey: "migrated_to_service_management")
-        }
-        
+        migrateToSMAppService()
         makeMenu()
         
         let clientId = UserDefaults.standard.string(forKey: "client_id")?.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -76,42 +68,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             controller = AudioInputController()
         }
         
-        Task {
-            while true {
-                if !isMicrophoneConnected && self.statusItem.title != "Inactive — No Microphone Connected" {
-                    self.statusItem.title = "Inactive — No Microphone Connected"
-                }
-                else if isMicrophoneConnected && self.statusItem.title != statusItemTitle {
-                    self.statusItem.title = self.statusItemTitle
-                }
-                
-                try? await Task.sleep(nanoseconds: 250_000_000)
-            }
-        }
-        
         let rpc = RPC(clientId: clientId!, clientSecret: clientSecret!)
         self.rpc = rpc
 
-        setUpRPCEvents(rpc)
+        initRPCEvents(rpc)
         
         NSWorkspace.shared.notificationCenter.addObserver(forName: NSWorkspace.didLaunchApplicationNotification, object: nil, queue: nil) { notif in
             if let app = notif.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication {
                 if app.bundleIdentifier == "com.hnc.Discord" {
                     self.statusItemTitle = "Trying to connect..."
                     logger.info("Discord is open.")
-                    let timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { timer in
-                        Task {
+                    
+                    Task {
+                        for i in 1...30 {
                             do {
                                 try rpc.connect()
-                                timer.invalidate()
+                                break
                             }
                             catch {
                                 logger.error("Connection process threw an exception: \(String(describing: error))")
+                                try? await Task.sleep(nanoseconds: 5_000_000_000 * UInt64(i))
                             }
+
                         }
                     }
-                    
-                    timer.fire()
                 }
             }
         }
@@ -166,6 +146,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         logger.info("An audio capture device was connected.")
         isMicrophoneConnected = true
         controller = AudioInputController()
+        
+        if (try? rpc?.getSelectedVoiceChannel()) != nil {
+            controller?.start()
+        }
     }
     
     @objc func audioCaptureDeviceWasDisconnected(notification: Notification) {
@@ -176,40 +160,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if AVCaptureDevice.default(for: .audio) == nil {
             logger.info("An audio capture device was disconnected, and none are left.")
             isMicrophoneConnected = false
+            controller?.stop()
             controller = nil
-        }
-    }
-    
-    @objc func launchPreferences() {
-        let storyboard = NSStoryboard(name: "Main", bundle: nil)
-        if let viewController = storyboard.instantiateController(withIdentifier: "PreferencesHostingController") as? NSHostingController<SettingsView> {
-            guard !windowDelegate.isOpen else {
-                NSApp.activate()
-                NSApp.keyWindow?.orderFrontRegardless()
-                return
-            }
-            
-            let window = NSWindow(contentViewController: viewController)
-            
-            window.styleMask = [.titled, .closable]
-            window.title = "AirMute — Settings"
-            if UserDefaults.standard.bool(forKey: "update_available") && rpc?.user != nil {
-                window.setContentSize(.init(width: 550, height: 400))
-            }
-            else {
-                window.setContentSize(.init(width: 550, height: 380))
-            }
-            window.center()
-            
-            window.delegate = windowDelegate
-            
-            let windowController = NSWindowController(window: window)
-            windowController.showWindow(self)
-            windowDelegate.isOpen = true
-            windowController.window!.makeKey()
-            NSApp.activate()
-            NSApp.keyWindow?.orderFrontRegardless()
-            return
         }
     }
     
@@ -227,31 +179,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationWillTerminate(_ aNotification: Notification) {
         rpc?.closeSocket()
-    }
-    
-    func makeMenu() {
-        let menu = NSMenu()
-        statusItem = NSMenuItem(title: statusItemTitle, action: nil, keyEquivalent: "")
-        statusItem.isEnabled = false
-        updateMenuItem.isHidden = !UserDefaults.standard.bool(forKey: "update_available")
-        
-        menu.addItem(statusItem)
-        menu.addItem(updateMenuItem)
-        menu.addItem(NSMenuItem(title: "Settings...", action: #selector(launchPreferences), keyEquivalent: ""))
-        menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate), keyEquivalent: ""))
-        
-        
-        statusBarMenuItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        statusBarMenuItem.menu = menu
-        
-        let image = NSImage(systemSymbolName: "person.wave.2.fill", accessibilityDescription: nil)!
-            .withSymbolConfiguration(
-                .preferringHierarchical().applying(.init(textStyle: .body, scale: .medium).applying(.init(pointSize: 14, weight: .semibold)))
-            )!
-                
-        image.size = NSSize(width: 24.0, height: 24.0)
-        statusBarMenuItem.button!.image = image
-        statusBarMenuItem.isVisible = true
     }
 
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {

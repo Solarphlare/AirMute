@@ -126,7 +126,6 @@ public enum UserFlag: Int, Codable {
     case partneredServerOwner      = 2
     case hypesquadEvents           = 4
     case bugHunterLevel1           = 8
-    case normalUser                = 32 // NOTE: not documented but this is the one I got for my user during my tests...
     case houseBravery              = 64
     case houseBrilliance           = 128
     case houseBalance              = 256
@@ -137,9 +136,7 @@ public enum UserFlag: Int, Codable {
     case earlyVerifiedBotDeveloper = 131072
     case discordCertifiedModerator = 262144
     case botHttpInteractions       = 524288
-    // these aren't documented so i have no idea what they are
-    case unknown1                  = 4194368
-    case unknown2                  = 4194384
+    case activeDeveloper           = 4194304
 }
 
 // See https://github.com/discord/discord-api-docs/blob/55cd3d71082e9dc31cbd007a6e74b1cd6a82beeb/docs/resources/User.md#premium-types
@@ -147,6 +144,7 @@ public enum PremiumType: Int, Codable {
     case none         = 0
     case nitroClassic = 1
     case nitro        = 2
+    case nitroBasic   = 3
 }
 
 // ------------------ //

@@ -2,7 +2,7 @@ import Foundation
 import AVFAudio
 
 extension AppDelegate {
-    func setUpRPCEvents(_ rpc: RPC) {
+    func initRPCEvents(_ rpc: RPC) {
         rpc.onConnect { rpcParam, event in
             do {
                 let authentication = try rpcParam.authenticateOverRPC()

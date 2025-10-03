@@ -22,10 +22,20 @@ extension RPC {
     func getVoiceSettings() throws -> ResponseGetVoiceSettings {
         let nonce = "sync;\(UUID().uuidString)"
         
-        let payload = ["nonce": nonce, "args": [], "cmd": "GET_VOICE_SETTINGS"] as [String : Any]
+        let payload = ["nonce": nonce, "args": [], "cmd": CommandType.getVoiceSettings.rawValue] as [String : Any]
         let payloadJSON = try JSONSerialization.data(withJSONObject: payload, options: [])
         
         let response = try syncResponse(requestJSON: String(data: payloadJSON, encoding: .utf8)!, nonce: nonce, disableTimeout: false)
         return try ResponseGetVoiceSettings.from(data: response)
+    }
+    
+    func getSelectedVoiceChannel() throws -> ResponseGetSelectedVoiceChannel {
+        let nonce = "sync;\(UUID().uuidString)"
+        
+        let payload = ["nonce": nonce, "args": [], "cmd": CommandType.getSelectedVoiceChannel.rawValue] as [String : Any]
+        let payloadJSON = try JSONSerialization.data(withJSONObject: payload, options: [])
+        
+        let response = try syncResponse(requestJSON: String(data: payloadJSON, encoding: .utf8)!, nonce: nonce, disableTimeout: false)
+        return try ResponseGetSelectedVoiceChannel.from(data: response)
     }
 }
