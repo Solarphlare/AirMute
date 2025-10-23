@@ -11,7 +11,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var isMicrophoneConnected = false {
         didSet {
             if !isMicrophoneConnected {
-                self.statusItem.title = "Inactive — No Microphone Connected"
+                self.statusItem.title = String(localized: "Inactive — No Microphone Connected")
             }
             else {
                 self.statusItem.title = self.statusItemTitle
@@ -29,7 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var statusBarMenuItem: NSStatusItem!
     var statusItem: NSMenuItem!
-    var updateMenuItem = NSMenuItem(title: "Install Update...", action: #selector(openReleasesPage), keyEquivalent: "")
+    var updateMenuItem = NSMenuItem(title: String(localized: "Install Update..."), action: #selector(openReleasesPage), keyEquivalent: "")
     
     var rpc: RPC?
     
@@ -54,7 +54,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let clientSecret = UserDefaults.standard.string(forKey: "client_secret")?.trimmingCharacters(in: .whitespacesAndNewlines)
         
         if clientId == nil || clientId!.isEmpty || clientSecret == nil || clientSecret!.isEmpty {
-            statusItemTitle = "Inactive — Missing Settings Values"
+            statusItemTitle = String(localized: "Inactive — Missing Settings Values")
             logger.error("Missing settings values.")
             return
         }
@@ -76,8 +76,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSWorkspace.shared.notificationCenter.addObserver(forName: NSWorkspace.didLaunchApplicationNotification, object: nil, queue: nil) { notif in
             if let app = notif.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication {
                 if app.bundleIdentifier == "com.hnc.Discord" {
-                    self.statusItemTitle = "Trying to connect..."
+                    self.statusItemTitle = String(localized: "Trying to connect...")
                     logger.info("Discord is open.")
+                    
                     
                     Task {
                         for i in 1...30 {
@@ -89,7 +90,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                 logger.error("Connection process threw an exception: \(String(describing: error))")
                                 try? await Task.sleep(nanoseconds: 5_000_000_000 * UInt64(i))
                             }
-
+                            
+                            if rpc.user == nil {
+                                self.statusItemTitle = String(localized: "Can't Connect to Discord")
+                            }
                         }
                     }
                 }
@@ -99,7 +103,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSWorkspace.shared.notificationCenter.addObserver(forName: NSWorkspace.didTerminateApplicationNotification, object: nil, queue: nil) { notif in
             if let app = notif.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication {
                 if app.bundleIdentifier == "com.hnc.Discord" {
-                    self.statusItemTitle = "Inactive — Discord Not Open"
+                    self.statusItemTitle = String(localized: "Inactive — Discord Not Open")
                     self.controller?.stop()
                     self.rpc?.closeSocket()
                 }
@@ -107,14 +111,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         if !NSRunningApplication.runningApplications(withBundleIdentifier: "com.hnc.Discord").isEmpty {
-            self.statusItemTitle = "Trying to connect..."
+            self.statusItemTitle = String(localized: "Trying to connect...")
             Task {
                 do {
                     try rpc.connect()
                 }
                 catch {
                     DispatchQueue.main.async {
-                        self.statusItemTitle = "Inactive — Can't Connect to Dicord"
+                        self.statusItemTitle = String(localized: "Inactive — Can't Connect to Dicord")
                     }
                     logger.info("Couldn't establish connection: \(String(describing: error))")
                 }

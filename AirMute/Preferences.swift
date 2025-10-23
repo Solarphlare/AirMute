@@ -36,18 +36,7 @@ extension AppDelegate {
                 return
             }
             
-            let window = NSWindow(contentViewController: viewController)
-            
-            window.styleMask = [.titled, .closable]
-            window.title = "AirMute — Settings"
-            if UserDefaults.standard.bool(forKey: "update_available") && rpc?.user != nil {
-                window.setContentSize(.init(width: 550, height: 400))
-            }
-            else {
-                window.setContentSize(.init(width: 550, height: 380))
-            }
-            window.center()
-            
+            let window = SettingsWindow(viewController: viewController)
             window.delegate = windowDelegate
             
             let windowController = NSWindowController(window: window)
@@ -56,7 +45,6 @@ extension AppDelegate {
             windowController.window!.makeKey()
             NSApp.activate()
             NSApp.keyWindow?.orderFrontRegardless()
-            return
         }
     }
 }

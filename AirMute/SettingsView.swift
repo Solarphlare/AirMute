@@ -1,162 +1,58 @@
 import SwiftUI
-import ServiceManagement
+
+enum SettingsPage {
+    case general
+    case behavior
+    case about
+    case update
+}
 
 struct SettingsView: View {
     @AppStorage("client_id") private var clientId = ""
     @AppStorage("client_secret") private var clientSecret = ""
     @AppStorage("click_to_undeafen") private var clickToUndeafen = true
-    @AppStorage("update_available") private var updateAvailable = false
     
-    @Environment(\.openURL) private var openURL
-    @FocusState private var focusState: FocusedField?
-    
-    @State private var programaticallyChangingStartupSwitch = false
-    @State private var launchOnStartup = SMAppService.mainApp.status == .enabled
+    @State private var selectedPage: SettingsPage = .general
+    @State private var backStack = BackStack()
     
     var body: some View {
-        let user = (NSApplication.shared.delegate as! AppDelegate).rpc?.user
-        
-        VStack {
-            Form {
-                if user != nil || updateAvailable {
-                    Section {
-                        if let user {
-                            HStack {
-                                if let avatar = user.avatar {
-                                    let url = URL(string: "https://cdn.discordapp.com/avatars/\(user.id)/\(avatar).png?size=256")!
-                                    
-                                    AsyncImage(url: url) {
-                                        $0.resizable()
-                                            .clipShape(Circle())
-                                            .frame(width: 30, height: 30)
-                                    } placeholder: {
-                                        Image(systemName: "person.crop.circle.fill")
-                                            .font(.system(size: 30))
-                                            .frame(width: 30, height: 30)
-                                    }
-                                }
-                                else {
-                                    Image(systemName: "person.crop.circle.fill")
-                                        .font(.system(size: 30))
-                                        .frame(width: 30, height: 30)
-                                }
-                                
-                                VStack(alignment: .leading) {
-                                    Text(user.globalName)
-                                        .fontWeight(.semibold)
-                                    Text("@" + user.username)
-                                        .font(.system(size: 11.5))
-                                        .opacity(0.5)
-                                }
-                            }
+        NavigationSplitView(sidebar: {
+            SettingsSidebarView(selectedPage: $selectedPage)
+                .toolbar(removing: .sidebarToggle)
+                .toolbar {
+                    ToolbarItem(placement: .navigation, content: {
+                        Button {
+                            selectedPage = backStack.navigateBack()
+                        } label: {
+                            Label(title: { Text("Back") }, icon: {
+                                Image(systemName: "chevron.left")
+                                    .padding(.horizontal, 2)
+                            })
                         }
-                        if updateAvailable {
-                            HStack {
-                                Text("A newer version of AirMute is available.")
-                                Spacer()
-                                Button(action: { openURL(URL(string: "https://github.com/Solarphlare/AirMute/releases/latest")!) }) {
-                                    Text("Update...")
-                                }
-                            }
+                        .disabled(backStack.index == 0)
+                    })
+                    ToolbarItem(placement: .navigation, content: {
+                        Button {
+                            selectedPage = backStack.navigateForward()
+                        } label: {
+                            Label(title: { Text("Forward") }, icon: { Image(systemName: "chevron.right")
+                                .padding(.horizontal, 4)
+                            })
                         }
-                    }
+                        .disabled(backStack.index == (backStack.history.count - 1))
+                    })
                 }
-                
-                Section {
-                    TextField(text: $clientId) {
-                        Text("Client ID")
-                    }
-                    .speechSpellsOutCharacters()
-                    .focused($focusState, equals: .id)
-                    
-                    TextField(text: $clientSecret) {
-                        Text("Client Secret")
-                    }
-                    .speechSpellsOutCharacters()
-                    .focused($focusState, equals: .secret)
-                    
-                    VStack(alignment: .leading) {
-                        if #available(macOS 15, *) {
-                            HStack(spacing: 1) {
-                                Text("You can obtain a Client ID and secret from the ")
-                                Text("[Discord Developer Portal](https://discord.com/developers/applications).")
-                                    .pointerStyle(.link)
-                            }
-                        }
-                        else {
-                            Text("You can obtain a Client ID and secret from the [Discord Developer Portal](https://discord.com/developers/applications).")
-                        }
-                        
-                        Text("Changes to the above values will require you to relaunch the app.")
-                    }
-                    .multilineTextAlignment(.leading)
-                    .font(.system(size: 11))
-                    .foregroundStyle(.secondary)
-                }
-                
-                Section {
-                    Toggle(isOn: $clickToUndeafen) {
-                        VStack(alignment: .leading, spacing: 2.5) {
-                            Text("Click to Undeafen")
-                            Text(clickToUndeafen ? "When deafened, clicking the stem or pressing the digital crown will undeafen and unmute you." : "When deafened, clicking the stem or pressing the digital crown will not do anything.")
-                                .font(.system(size: 11))
-                                .foregroundStyle(.secondary)
-                            
-                        }
-                    }
-                    
-                    Toggle(isOn: $launchOnStartup) {
-                        Text("Launch on Startup")
-                    }
-                }
-                
-            }
-            .formStyle(.grouped)
-            .scrollDisabled(true)
-            
-            Spacer()
-            
-            Text("AirMute \(Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String) (\(Bundle.main.infoDictionary!["CFBundleVersion"] as! String))")
-                .padding(.bottom, 12)
-                .foregroundStyle(Color(nsColor: .tertiaryLabelColor))
-                .font(.system(size: 11))
-        }
-        .onChange(of: launchOnStartup) {
-            if programaticallyChangingStartupSwitch { return }
-            programaticallyChangingStartupSwitch = true
-            
-            if launchOnStartup {
-                do {
-                    try SMAppService.mainApp.register()
-                }
-                catch {
-                    launchOnStartup = false
-                }
-            }
-            else {
-                do {
-                    try SMAppService.mainApp.unregister()
-                }
-                catch {
-                    launchOnStartup = true
-                }
-            }
-            
-            programaticallyChangingStartupSwitch = false
-        }
-        .onAppear {
-            // Wrangling the default SwiftUI focus
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
-                focusState = nil
-            }
+        }, detail: {
+            SettingsDetailView(selectedPage: $selectedPage)
+        })
+        .onChange(of: selectedPage) {
+            backStack.navigate(to: selectedPage)
         }
     }
 }
 
-fileprivate enum FocusedField {
-    case id, secret, dud
-}
-
-#Preview {
-    SettingsView()
+struct SettingsView_Previews: PreviewProvider {
+    static var previews: some View {
+        SettingsView()
+    }
 }
