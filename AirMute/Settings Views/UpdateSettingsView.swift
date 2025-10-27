@@ -15,7 +15,7 @@ struct UpdateSettingsView: View {
                 Spacer()
                 VStack(alignment: .trailing) {
                     Button {
-                        
+                        openURL(URL(string: "https://github.com/Solarphlare/AirMute/releases/latest")!)
                     } label: {
                         Text("Download...")
                     }
