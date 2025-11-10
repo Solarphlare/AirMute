@@ -14,7 +14,7 @@ struct SettingsSidebarView: View {
                         if let avatar = user.avatar {
                             let url = URL(string: "https://cdn.discordapp.com/avatars/\(user.id)/\(avatar).png?size=256")!
                             
-                            AsyncImage(url: url) {
+                            CachedAsyncImage(url: url) {
                                 $0.resizable()
                                     .clipShape(Circle())
                                     .frame(width: 30, height: 30)
@@ -39,7 +39,9 @@ struct SettingsSidebarView: View {
                         }
                     }
                 }
-                
+            }
+            
+            Section {
                 if updateAvailable {
                     HStack {
                         Text("Update Available")
