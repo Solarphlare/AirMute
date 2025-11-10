@@ -63,6 +63,7 @@
 		3EAC5CDE2E8F8A4F0074193E /* ChannelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC5CDD2E8F8A4F0074193E /* ChannelType.swift */; };
 		3EAC5CE02E8F8C2A0074193E /* ResponseGetSelectedVoiceChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC5CDF2E8F8C220074193E /* ResponseGetSelectedVoiceChannel.swift */; };
 		3EC4C95B2C7BF41B00DD4AEF /* RPCEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4C95A2C7BF41B00DD4AEF /* RPCEvents.swift */; };
+		3EE50F2C2EC1A56100FBE7E0 /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE50F2B2EC1A55E00FBE7E0 /* CachedAsyncImage.swift */; };
 		3EF762C32E40297C00A989E7 /* UpdateChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF762C22E40297800A989E7 /* UpdateChecker.swift */; };
 /* End PBXBuildFile section */
 
@@ -125,6 +126,7 @@
 		3EAC5CDD2E8F8A4F0074193E /* ChannelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelType.swift; sourceTree = "<group>"; };
 		3EAC5CDF2E8F8C220074193E /* ResponseGetSelectedVoiceChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseGetSelectedVoiceChannel.swift; sourceTree = "<group>"; };
 		3EC4C95A2C7BF41B00DD4AEF /* RPCEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPCEvents.swift; sourceTree = "<group>"; };
+		3EE50F2B2EC1A55E00FBE7E0 /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
 		3EF762C22E40297800A989E7 /* UpdateChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChecker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -239,6 +241,7 @@
 		3E77DF4D2E98089E002C23D3 /* Settings Views */ = {
 			isa = PBXGroup;
 			children = (
+				3EE50F2B2EC1A55E00FBE7E0 /* CachedAsyncImage.swift */,
 				3E77DF562E98290F002C23D3 /* BackStack.swift */,
 				3E77DF4E2E9808A6002C23D3 /* GeneralSettingsView.swift */,
 				3E77DF522E980A9E002C23D3 /* BehaviorSettingsView.swift */,
@@ -396,6 +399,7 @@
 				3E24AEF92D910BDF006E8C14 /* ViewController.swift in Sources */,
 				3E45C9CA2C793A66000750ED /* AccessToken.swift in Sources */,
 				3EC4C95B2C7BF41B00DD4AEF /* RPCEvents.swift in Sources */,
+				3EE50F2C2EC1A56100FBE7E0 /* CachedAsyncImage.swift in Sources */,
 				3E1D91832C791F5900331448 /* Coding.swift in Sources */,
 				3E1D91AC2C79387400331448 /* ResponseAuthorize.swift in Sources */,
 				3E1D91962C7921E800331448 /* EventReady.swift in Sources */,
@@ -585,7 +589,7 @@
 				CODE_SIGN_ENTITLEMENTS = AirMute/AirMute.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -600,7 +604,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 2.4.1;
+				MARKETING_VERSION = 2.4.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cominatyou.AirMute;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -616,7 +620,7 @@
 				CODE_SIGN_ENTITLEMENTS = AirMute/AirMute.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -631,7 +635,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 2.4.1;
+				MARKETING_VERSION = 2.4.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cominatyou.AirMute;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
