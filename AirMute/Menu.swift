@@ -6,11 +6,24 @@ extension AppDelegate {
         statusItem = NSMenuItem(title: statusItemTitle, action: nil, keyEquivalent: "")
         statusItem.isEnabled = false
         updateMenuItem.isHidden = !UserDefaults.standard.bool(forKey: "update_available")
+        updateMenuItem.image = NSImage(systemSymbolName: "square.and.arrow.down", accessibilityDescription: nil)!
         
         menu.addItem(statusItem)
+        menu.addItem(.separator())
         menu.addItem(updateMenuItem)
-        menu.addItem(NSMenuItem(title: "Settings...", action: #selector(launchPreferences), keyEquivalent: ""))
-        menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate), keyEquivalent: ""))
+        
+        let settingsMenuItem = NSMenuItem(title: "Settings...", action: #selector(launchPreferences), keyEquivalent: "")
+        settingsMenuItem.image = NSImage(systemSymbolName: "gear", accessibilityDescription: nil)!
+        
+        menu.addItem(settingsMenuItem)
+        
+        let quitMenuItem = NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate), keyEquivalent: "")
+        
+        if #unavailable(macOS 26.1) { // macOS 26.1+ includes a default icon for the quit MenuItem
+            quitMenuItem.image = NSImage(systemSymbolName: "xmark.rectangle", accessibilityDescription: nil)!
+        }
+        
+        menu.addItem(quitMenuItem)
         
         
         statusBarMenuItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
