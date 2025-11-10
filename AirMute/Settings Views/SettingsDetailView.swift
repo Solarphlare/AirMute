@@ -4,17 +4,19 @@ struct SettingsDetailView: View {
     @Binding var selectedPage: SettingsPage
     
     var body: some View {
-        if selectedPage == .about {
-            AboutSettingsView()
-                .navigationTitle("About")
-        }
-        else if selectedPage == .behavior {
-            BehaviorSettingsView()
-                .navigationTitle("Behavior")
-        }
-        else {
-            GeneralSettingsView()
-                .navigationTitle("General")
+        switch (selectedPage) {
+            case .about:
+                AboutSettingsView()
+                    .navigationTitle("About")
+            case .behavior:
+                BehaviorSettingsView()
+                    .navigationTitle("Behavior")
+            case .update:
+                UpdateSettingsView()
+                    .navigationTitle("Software Update")
+            case .general:
+                GeneralSettingsView()
+                    .navigationTitle("General")
         }
     }
 }
