@@ -11,12 +11,14 @@ struct GeneralSettingsView: View {
                 TextField(text: $clientId) {
                     Text("Client ID")
                 }
+                .autocorrectionDisabled()
                 .speechSpellsOutCharacters()
                 .focused($focusState, equals: .id)
                 
                 TextField(text: $clientSecret) {
                     Text("Client Secret")
                 }
+                .autocorrectionDisabled()
                 .speechSpellsOutCharacters()
                 .focused($focusState, equals: .secret)
                 
@@ -40,6 +42,9 @@ struct GeneralSettingsView: View {
             }
         }
         .formStyle(.grouped)
+        .onAppear {
+            focusState = .dud
+        }
     }
 }
 

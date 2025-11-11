@@ -92,6 +92,9 @@
                                                 <action selector="menuItemClicked:" target="Voe-Tx-rLC" id="fJy-IB-BGn"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Machine Love" tag="2" keyEquivalent="M" id="kja-8h-AoM">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>

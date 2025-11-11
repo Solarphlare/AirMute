@@ -178,6 +178,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if (sender.tag == 1) {
             NSWorkspace.shared.open(URL(string: "https://www.youtube.com/watch?v=FtutLA63Cp8")!)
         }
+        else if (sender.tag == 2) {
+            NSWorkspace.shared.open(URL(string: "https://www.youtube.com/watch?v=sqK-jh4TDXo")!)
+        }
     }
     
     
