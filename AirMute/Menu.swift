@@ -12,12 +12,12 @@ extension AppDelegate {
         menu.addItem(.separator())
         menu.addItem(updateMenuItem)
         
-        let settingsMenuItem = NSMenuItem(title: "Settings...", action: #selector(launchPreferences), keyEquivalent: "")
+        let settingsMenuItem = NSMenuItem(title: String(localized: "Settings..."), action: #selector(launchPreferences), keyEquivalent: "")
         settingsMenuItem.image = NSImage(systemSymbolName: "gear", accessibilityDescription: nil)!
         
         menu.addItem(settingsMenuItem)
         
-        let quitMenuItem = NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate), keyEquivalent: "")
+        let quitMenuItem = NSMenuItem(title: String(localized: "Quit"), action: #selector(NSApplication.terminate), keyEquivalent: "")
         
         if #unavailable(macOS 26.1) { // macOS 26.1+ includes a default icon for the quit MenuItem
             quitMenuItem.image = NSImage(systemSymbolName: "xmark.rectangle", accessibilityDescription: nil)!
