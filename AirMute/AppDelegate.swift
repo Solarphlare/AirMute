@@ -130,7 +130,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(audioCaptureDeviceWasDisconnected), name: AVCaptureDevice.wasDisconnectedNotification, object: nil)
         
         if !UserDefaults.standard.bool(forKey: "update_available") {
-            let timer = Timer.scheduledTimer(withTimeInterval: 60 * 30, repeats: true) { _ in
+            let timer = Timer.scheduledTimer(withTimeInterval: 60 * 60 * 6, repeats: true) { _ in
                 Task {
                     await UpdateChecker.checkForUpdates()
                 }
