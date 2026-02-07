@@ -1,11 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "AirMute.png",
+      "filename" : "AirMute-Icon-macOS-Default-128x128@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "AirMute-Icon-macOS-Default-128x128@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

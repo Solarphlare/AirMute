@@ -1,4 +1,5 @@
 import SwiftUI
+import Foundation
 
 struct AboutSettingsView: View {
     @Environment(\.openURL) private var openURL
@@ -6,10 +7,10 @@ struct AboutSettingsView: View {
         NavigationStack {
             Form {
                 Section {
-                    VStack(alignment: .center, spacing: 0) {
+                    VStack(alignment: .center, spacing: 12) {
                         Image("AirMute")
                             .resizable()
-                            .frame(width: 85, height: 85)
+                            .frame(width: 70, height: 70)
                         VStack {
                             Text("AirMute")
                                 .font(.largeTitle)
@@ -28,7 +29,7 @@ struct AboutSettingsView: View {
                         Text("Version")
                     })
                     LabeledContent(content: {
-                        Text("© 2025 Solarphlare")
+                        Text("© \(String(Calendar.current.component(.year, from: Date.now))) Solarphlare")
                     }, label: {
                         Text("Copyright")
                     })

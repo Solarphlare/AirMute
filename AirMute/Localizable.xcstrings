@@ -58,7 +58,11 @@
         }
       }
     },
+    "© %@ Solarphlare" : {
+
+    },
     "© 2025 Solarphlare" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
