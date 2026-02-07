@@ -40,21 +40,21 @@ struct SettingsSidebarView: View {
                     }
                 }
             }
-            
-            Section {
-                if updateAvailable {
-                    HStack {
-                        Text("Update Available")
-                        Spacer()
-                        Text("1")
-                            .padding(.all, 6)
-                            .font(.system(size: 10, weight: .semibold))
-                            .foregroundStyle(.white)
-                            .background(Color.red)
-                            .clipShape(Circle())
+    
+            if updateAvailable {
+                Section {
+                        HStack {
+                            Text("Update Available")
+                            Spacer()
+                            Text("1")
+                                .padding(.all, 6)
+                                .font(.system(size: 10, weight: .semibold))
+                                .foregroundStyle(.white)
+                                .background(Color.red)
+                                .clipShape(Circle())
+                        }
+                        .tag(SettingsPage.update)
                     }
-                    .tag(SettingsPage.update)
-                }
             }
             
             Section {
