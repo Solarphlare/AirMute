@@ -78,8 +78,8 @@ extension AppDelegate {
                 self.statusItemTitle = "Error — Invalid RPC Origin"
                 logger.error("Failed to connect - Invalid RPC Origin: \(event.message)")
             case .socketDisconnected:
+                self.statusItemTitle = "Error — Unable to Connect"
                 logger.error("Failed to connect - socket died")
-                break
             default:
                 self.statusItemTitle = "Error — Unable to Connect"
                 logger.error("Got disocnnect OpCode: \(String(describing: event.code)) \(event.message)")
