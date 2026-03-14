@@ -42,6 +42,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 let latestVersionSplit = UserDefaults.standard.array(forKey: "latest_version") as! [Int]
             
                 if latestVersionSplit.elementsEqual(installedVersionSplit) {
+                    logger.info("App was updated since last launch")
                     UserDefaults.standard.set(false, forKey: "update_available")
                 }
             }
@@ -79,7 +80,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     self.statusItemTitle = String(localized: "Trying to connect...")
                     logger.info("Discord is open.")
                     
-                    
                     Task {
                         for i in 1...30 {
                             do {
@@ -87,12 +87,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                 break
                             }
                             catch {
-                                logger.error("Connection process threw an exception: \(String(describing: error))")
+                                logger.error("[RPC] Connection process threw an exception: \(String(describing: error))")
                                 try? await Task.sleep(nanoseconds: 5_000_000_000 * UInt64(i))
                             }
                             
                             if rpc.user == nil {
                                 self.statusItemTitle = String(localized: "Can't Connect to Discord")
+                                logger.info("[RPC] Failed to connect: user is nil?")
                             }
                         }
                     }

@@ -6,6 +6,7 @@ import ServiceManagement
 extension AppDelegate {
     func migrateToSMAppService() {
         if !UserDefaults.standard.bool(forKey: "migrated_to_service_management") {
+            logger.info("Startup task has not been migrated to SMAppService, performing migraiton now...")
             if UserDefaults.standard.bool(forKey: "launch_on_startup") {
                 let launchAgentFile = FileManager.default.homeDirectoryForCurrentUser.appending(path: "Library/LaunchAgents/AirMute.plist")
                 do {

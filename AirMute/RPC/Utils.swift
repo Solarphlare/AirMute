@@ -2,7 +2,7 @@ import Foundation
 import os
 import AppKit
 
-let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "RPC", category: "rpc")
+let logger = AppLogger()
 
 func generateNonce(async: Bool = false) -> String {
     return "\(async ? "async" : "sync");\(UUID().uuidString)"

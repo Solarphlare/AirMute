@@ -8,12 +8,14 @@ extension AppDelegate {
                 let authentication = try rpcParam.authenticateOverRPC()
                 
                 rpc.user = authentication.data.user
-                logger.info("Connected to @\(authentication.data.user.username)!")
+                logger.info("[RPC] Connected to @\(authentication.data.user.username)!")
                 
                 self.statusItemTitle = "Inactive — Not in Voice"
                 
                 _ = try rpcParam.subscribe(event: .voiceConnectionStatus)
+                logger.info("[RPC] Successfully registered subscription for event type \(EventType.voiceConnectionStatus.rawValue)")
                 _ = try rpcParam.subscribe(event: .voiceSettingsUpdate)
+                logger.info("[RPC] Successfully registered subscription for event type \(EventType.voiceSettingsUpdate.rawValue)")
                 
                 try self.initMuteStateHandler(rpcParam)
                 
@@ -25,38 +27,43 @@ extension AppDelegate {
             catch HTTPError.failed(let code, let error) {
                 if (code == 401) {
                     self.statusItemTitle = "Error — Invalid Client Secret"
-                    logger.error("Failed to connect - client secret is invalid")
+                    logger.error("[RPC] Failed to connect - client secret is invalid")
                     rpc.closeSocket()
                 }
                 else {
                     self.statusItemTitle = "Error — Unable to Connect"
-                    logger.error("Got HTTP error \(code ?? -1): \(String(describing: error))")
+                    logger.error("[RPC] Got HTTP error \(code ?? -1): \(String(describing: error))")
                 }
             }
             catch CommandError.failed(let code, let errorMessage) {
                 if code == .oAuth2Error {
                     self.statusItemTitle = "Error — Couldn't Obtain Authorization"
-                    logger.error("Failed to connect - couldn't obtain authorization")
+                    logger.error("[RPC] Failed to connect - couldn't obtain authorization")
                 }
                 else {
                     self.statusItemTitle = "Error — Command Failed"
-                    logger.error("Got command error \(String(describing: code)): \(errorMessage)")
+                    logger.error("[RPC] Got command error \(String(describing: code)): \(errorMessage)")
                 }
             }
             catch {
-                logger.error("onConnect block error: \(String(describing: error))")
+                logger.error("[RPC] onConnect block error: \(String(describing: error))")
             }
         }
         
         rpc.onEvent { rpcParam, eventType, event in
             if eventType == .voiceSettingsUpdate {
-                if let responseSvc = try? ResponseGetVoiceSettings.from(data: event) {
+                do {
+                    let responseSvc = try ResponseGetVoiceSettings.from(data: event)
                     self.clientInitiatedAction = true
-                    try? AVAudioApplication.shared.setInputMuted(responseSvc.data.deaf || responseSvc.data.mute)
+                    try AVAudioApplication.shared.setInputMuted(responseSvc.data.deaf || responseSvc.data.mute)
+                }
+                catch {
+                    logger.error(String(describing: error))
                 }
             }
             else if eventType == .voiceConnectionStatus {
-                if let eventData = try? EventVoiceConnectionStatus.from(data: event) {
+                do {
+                    let eventData = try EventVoiceConnectionStatus.from(data: event)
                     if eventData.data.state == .disconnected {
                         self.statusItemTitle = "Inactive — Not in Voice"
                         self.controller?.stop()
@@ -66,6 +73,9 @@ extension AppDelegate {
                         self.controller?.start()
                     }
                 }
+                catch {
+                    logger.error(String(describing: error))
+                }
             }
         }
         
@@ -73,16 +83,16 @@ extension AppDelegate {
             switch event.code {
             case .invalidClientID:
                 self.statusItemTitle = "Error — Invalid Client ID"
-                logger.error("Failed to connect - Invalid Client ID: \(event.message)")
+                logger.error("[RPC] Failed to connect - Invalid Client ID: \(event.message)")
             case .invalidOrigin:
                 self.statusItemTitle = "Error — Invalid RPC Origin"
-                logger.error("Failed to connect - Invalid RPC Origin: \(event.message)")
+                logger.error("[RPC] Failed to connect - Invalid RPC Origin: \(event.message)")
             case .socketDisconnected:
                 self.statusItemTitle = "Error — Unable to Connect"
-                logger.error("Failed to connect - socket died")
+                logger.error("[RPC] Failed to connect - socket died (\(event.message))")
             default:
                 self.statusItemTitle = "Error — Unable to Connect"
-                logger.error("Got disocnnect OpCode: \(String(describing: event.code)) \(event.message)")
+                logger.error("[RPC] Got disocnnect OpCode: \(event.code.rawValue) \(event.message)")
             }
         }
     }

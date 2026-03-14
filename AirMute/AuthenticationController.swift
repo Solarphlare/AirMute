@@ -2,6 +2,7 @@ import Foundation
 
 extension RPC {
     func authenticateOverRPC() throws -> ResponseAuthenticate {
+        logger.info("Trying to authenticate...")
         if let tokenExpiry = UserDefaults.standard.object(forKey: "token_expiry") as? Date, tokenExpiry > Date() {
             if let accessTokenData = UserDefaults.standard.data(forKey: "access_token") {
                 do {

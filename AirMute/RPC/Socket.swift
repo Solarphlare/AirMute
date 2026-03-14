@@ -19,7 +19,7 @@ extension RPC {
     func handshake() throws {
         let request = try RequestHandshake(clientID: self.clientId)
         let requestJSON = try request.jsonString()
-        logger.info("Kicking off handshake with JSON: \(requestJSON)")
+        logger.info("[RPC] Kicking off handshake with JSON: \(requestJSON)")
 
         try self.send(requestJSON, .handshake)
         self.receive()
@@ -30,7 +30,7 @@ extension RPC {
             throw RPCError.appSandboxed
         }
         try self.createSocket()
-        logger.info("Created socket.")
+        logger.info("[RPC] Created socket.")
 
         let path = NSTemporaryDirectory()
         for suffix in udsSuffixRange {
@@ -38,7 +38,7 @@ extension RPC {
 
             guard !self.socket!.isConnected else {
                 do {
-                    logger.info("Connected to socket at \(path)discord-ipc-\(suffix)")
+                    logger.info("[RPC] Connected to socket at \(path)discord-ipc-\(suffix)")
                     try self.handshake()
                     return
                 } catch {
@@ -128,14 +128,14 @@ extension RPC {
 
                     var response = try self.socket?.read(into: headerPtr, bufSize: 8, truncate: true)
                     guard response! > 0 else {
-                        logger.warning("Receive: header length is 0")
+                        logger.warning("[RPC] Receive: header length is 0")
                         continue
                     }
 
                     let opValue = headerRawPtr.load(as: UInt32.self)
                     let length = headerRawPtr.load(fromByteOffset: 4, as: UInt32.self)
                     guard length > 0, let op = OPCode(rawValue: opValue) else {
-                        logger.warning("Receive: opcode length is 0")
+                        logger.warning("[RPC] Receive: opcode length is 0")
                         continue
                     }
 
@@ -144,14 +144,14 @@ extension RPC {
 
                     response = try self.socket?.read(into: payloadPtr, bufSize: Int(length), truncate: true)
                     guard response! > 0 else {
-                        logger.warning("Receive: payload length is 0")
+                        logger.warning("[RPC] Receive: payload length is 0")
                         continue
                     }
 
                     let data = Data(bytes: UnsafeRawPointer(payloadPtr), count: Int(length))
                     self.handlePayload(op, data)
                 } catch {
-                    logger.error("Receive: failed with error: \(error.localizedDescription)")
+                    logger.error("[RPC] Receive: failed with error: \(error.localizedDescription)")
                 }
             }
         }

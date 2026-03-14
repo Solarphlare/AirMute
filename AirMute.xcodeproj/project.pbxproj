@@ -62,6 +62,7 @@
 		3EAC5CD92E8F83330074193E /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC5CD82E8F83320074193E /* Menu.swift */; };
 		3EAC5CDE2E8F8A4F0074193E /* ChannelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC5CDD2E8F8A4F0074193E /* ChannelType.swift */; };
 		3EAC5CE02E8F8C2A0074193E /* ResponseGetSelectedVoiceChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC5CDF2E8F8C220074193E /* ResponseGetSelectedVoiceChannel.swift */; };
+		3EB454A42F46CD2C0006A7D4 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB454A32F46CD2A0006A7D4 /* AppLogger.swift */; };
 		3EC4C95B2C7BF41B00DD4AEF /* RPCEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4C95A2C7BF41B00DD4AEF /* RPCEvents.swift */; };
 		3EE50F2C2EC1A56100FBE7E0 /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE50F2B2EC1A55E00FBE7E0 /* CachedAsyncImage.swift */; };
 		3EF762C32E40297C00A989E7 /* UpdateChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF762C22E40297800A989E7 /* UpdateChecker.swift */; };
@@ -125,6 +126,7 @@
 		3EAC5CD82E8F83320074193E /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		3EAC5CDD2E8F8A4F0074193E /* ChannelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelType.swift; sourceTree = "<group>"; };
 		3EAC5CDF2E8F8C220074193E /* ResponseGetSelectedVoiceChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseGetSelectedVoiceChannel.swift; sourceTree = "<group>"; };
+		3EB454A32F46CD2A0006A7D4 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
 		3EC4C95A2C7BF41B00DD4AEF /* RPCEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPCEvents.swift; sourceTree = "<group>"; };
 		3EE50F2B2EC1A55E00FBE7E0 /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
 		3EF762C22E40297800A989E7 /* UpdateChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChecker.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				3E45C9E92C7942A3000750ED /* AudioInputController.swift */,
 				3E45C9EE2C7993A5000750ED /* AuthenticationController.swift */,
 				3E45C9EB2C794CC1000750ED /* Controls.swift */,
+				3EB454A32F46CD2A0006A7D4 /* AppLogger.swift */,
 				3EAC5CD82E8F83320074193E /* Menu.swift */,
 				3E2AE76C2C7A309C0003D244 /* MuteStateHandler.swift */,
 				3EC4C95A2C7BF41B00DD4AEF /* RPCEvents.swift */,
@@ -392,6 +395,7 @@
 				3E1D91AA2C79387400331448 /* ResponseUnsubscribe.swift in Sources */,
 				3E1D91B42C79388E00331448 /* RequestHandshake.swift in Sources */,
 				3E9ED3462C78F18B00FB4370 /* AppDelegate.swift in Sources */,
+				3EB454A42F46CD2C0006A7D4 /* AppLogger.swift in Sources */,
 				3EAC5CE02E8F8C2A0074193E /* ResponseGetSelectedVoiceChannel.swift in Sources */,
 				3E1D919F2C79238D00331448 /* NonceError.swift in Sources */,
 				3E1D91942C7921E800331448 /* EventClose.swift in Sources */,
@@ -589,7 +593,7 @@
 				CODE_SIGN_ENTITLEMENTS = AirMute/AirMute.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -604,7 +608,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 2.4.3;
+				MARKETING_VERSION = 2.4.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cominatyou.AirMute;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -620,7 +624,7 @@
 				CODE_SIGN_ENTITLEMENTS = AirMute/AirMute.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 21;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -635,7 +639,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 2.4.3;
+				MARKETING_VERSION = 2.4.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cominatyou.AirMute;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -14,8 +14,20 @@ extension AppDelegate {
         
         let settingsMenuItem = NSMenuItem(title: String(localized: "Settings..."), action: #selector(launchPreferences), keyEquivalent: "")
         settingsMenuItem.image = NSImage(systemSymbolName: "gear", accessibilityDescription: nil)!
-        
         menu.addItem(settingsMenuItem)
+        
+        let emptyView = NSView(frame: CGRect(x: 0, y: 0, width: 0, height: 1))
+        let emptyItem = NSMenuItem(title: "Empty Item", action: nil, keyEquivalent: "")
+        emptyItem.view = emptyView
+        menu.addItem(emptyItem)
+        
+        let copyLogFileMenuItem = NSMenuItem(title: String(localized: "Save Log File to Desktop"), action: #selector(saveLogFileToDesktop), keyEquivalent: "")
+        
+        copyLogFileMenuItem.isAlternate = true
+        copyLogFileMenuItem.keyEquivalentModifierMask = [.shift]
+        copyLogFileMenuItem.image = NSImage(systemSymbolName: "square.and.arrow.down", accessibilityDescription: nil)!
+        
+        menu.addItem(copyLogFileMenuItem)
         
         let quitMenuItem = NSMenuItem(title: String(localized: "Quit"), action: #selector(NSApplication.terminate), keyEquivalent: "")
         

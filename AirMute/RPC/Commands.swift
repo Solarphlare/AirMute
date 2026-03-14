@@ -14,7 +14,6 @@ extension RPC {
             username: username
         )
         let requestJSON = try request.jsonString()
-
         let response = try syncResponse(requestJSON: requestJSON, nonce: nonce, disableTimeout: true)
         return try ResponseAuthorize.from(data: response)
     }
@@ -56,6 +55,7 @@ extension RPC {
     }
 
     public func subscribe(event: EventType, id: String? = nil) throws -> ResponseSubscribe {
+        logger.info("Registering subscription for event type \(event.rawValue)")
         let nonce = generateNonce()
         let request = try RequestSubscribe(evt: event, nonce: nonce, id: id)
         let requestJSON = try request.jsonString()
