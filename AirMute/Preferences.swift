@@ -5,25 +5,29 @@ import ServiceManagement
 
 extension AppDelegate {
     func migrateToSMAppService() {
-        if !UserDefaults.standard.bool(forKey: "migrated_to_service_management") {
-            logger.info("Startup task has not been migrated to SMAppService, performing migraiton now...")
-            if UserDefaults.standard.bool(forKey: "launch_on_startup") {
-                let launchAgentFile = FileManager.default.homeDirectoryForCurrentUser.appending(path: "Library/LaunchAgents/AirMute.plist")
-                do {
-                    if FileManager.default.fileExists(atPath: launchAgentFile.path(percentEncoded: false)) {
-                        try FileManager.default.removeItem(at: launchAgentFile)
-                    }
-                    try SMAppService.mainApp.register()
-                    UserDefaults.standard.set(true, forKey: "migrated_to_service_management")
-                    UserDefaults.standard.removeObject(forKey: "launch_on_startup")
-                    logger.info("Successfully migrated login task to SMAppService.")
-                }
-                catch {
-                    logger.info("Failed to migrate login task to SMAppService.")
-                    return
-                }
-            }
+        guard !UserDefaults.standard.bool(forKey: "migrated_to_service_management") else { return }
+                    
+        logger.info("Startup task has not been migrated to SMAppService, performing migraiton now...")
+        
+        if UserDefaults.standard.bool(forKey: "launch_on_startup") {
+            let launchAgentFile = FileManager.default.homeDirectoryForCurrentUser.appending(path: "Library/LaunchAgents/AirMute.plist")
             
+            do {
+                if FileManager.default.fileExists(atPath: launchAgentFile.path(percentEncoded: false)) {
+                    try FileManager.default.removeItem(at: launchAgentFile)
+                }
+                
+                try SMAppService.mainApp.register()
+                UserDefaults.standard.set(true, forKey: "migrated_to_service_management")
+                UserDefaults.standard.removeObject(forKey: "launch_on_startup")
+                logger.info("Successfully migrated login task to SMAppService.")
+            }
+            catch {
+                logger.info("Failed to migrate login task to SMAppService.")
+                return
+            }
+        }
+        else {
             UserDefaults.standard.set(true, forKey: "migrated_to_service_management")
         }
     }

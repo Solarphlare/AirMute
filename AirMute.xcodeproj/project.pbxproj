@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E0DFB332F37B9EC0076B6C7 /* Observers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0DFB322F37B9EA0076B6C7 /* Observers.swift */; };
 		3E1855C02C78FC42001861B4 /* ResponseGetVoiceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1855BF2C78FC42001861B4 /* ResponseGetVoiceSettings.swift */; };
 		3E1855C32C78FDE3001861B4 /* Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1855C22C78FDE3001861B4 /* Frame.swift */; };
 		3E1D91642C7914E000331448 /* RPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1D91632C7914E000331448 /* RPC.swift */; };
@@ -69,6 +70,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E0DFB322F37B9EA0076B6C7 /* Observers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observers.swift; sourceTree = "<group>"; };
 		3E1855BF2C78FC42001861B4 /* ResponseGetVoiceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseGetVoiceSettings.swift; sourceTree = "<group>"; };
 		3E1855C22C78FDE3001861B4 /* Frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frame.swift; sourceTree = "<group>"; };
 		3E1D91632C7914E000331448 /* RPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPC.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				3EB454A32F46CD2A0006A7D4 /* AppLogger.swift */,
 				3EAC5CD82E8F83320074193E /* Menu.swift */,
 				3E2AE76C2C7A309C0003D244 /* MuteStateHandler.swift */,
+				3E0DFB322F37B9EA0076B6C7 /* Observers.swift */,
 				3EC4C95A2C7BF41B00DD4AEF /* RPCEvents.swift */,
 				3E4E89EB2EA372AE00786AE5 /* Localizable.xcstrings */,
 				3E77DF4B2E9802B1002C23D3 /* SettingsView.swift */,
@@ -410,6 +413,7 @@
 				3E1D91A12C7925AA00331448 /* HTTPError.swift in Sources */,
 				3E77DF572E982912002C23D3 /* BackStack.swift in Sources */,
 				3EAC5CDE2E8F8A4F0074193E /* ChannelType.swift in Sources */,
+				3E0DFB332F37B9EC0076B6C7 /* Observers.swift in Sources */,
 				3E1D91B52C79388E00331448 /* RequestAuthorize.swift in Sources */,
 				3E45C9EC2C794CC1000750ED /* Controls.swift in Sources */,
 				3E45C9CC2C793A7F000750ED /* RPCToken.swift in Sources */,
