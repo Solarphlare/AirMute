@@ -8,9 +8,15 @@ struct AboutSettingsView: View {
             Form {
                 Section {
                     VStack(alignment: .center, spacing: 12) {
+                        #if DEBUG
+                        Image("AirMute-Debug")
+                            .resizable()
+                            .frame(width: 70, height: 70)
+                        #else
                         Image("AirMute")
                             .resizable()
                             .frame(width: 70, height: 70)
+                        #endif
                         VStack {
                             Text("AirMute")
                                 .font(.largeTitle)
