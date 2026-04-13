@@ -55,7 +55,7 @@ extension RPC {
     }
 
     public func subscribe(event: EventType, id: String? = nil) throws -> ResponseSubscribe {
-        logger.info("Registering subscription for event type \(event.rawValue)")
+        logger.info("[RPC] Registering subscription for event type \(event.rawValue)")
         let nonce = generateNonce()
         let request = try RequestSubscribe(evt: event, nonce: nonce, id: id)
         let requestJSON = try request.jsonString()

@@ -2,20 +2,20 @@ import Foundation
 
 extension RPC {
     func authenticateOverRPC() throws -> ResponseAuthenticate {
-        logger.info("Trying to authenticate...")
+        logger.info("[Auth] Trying to authenticate...")
         if let tokenExpiry = UserDefaults.standard.object(forKey: "token_expiry") as? Date, tokenExpiry > Date() {
             if let accessTokenData = UserDefaults.standard.data(forKey: "access_token") {
                 do {
-                    logger.info("Loaded cached credentials")
+                    logger.info("[Auth] Loaded cached credentials")
                     let accessToken = try AccessToken.from(data: accessTokenData)
                     return try authenticate(accessToken: accessToken.accessToken)
                 } catch {
-                    logger.warning("Cached credentials were found, but they are invalid. Re-authenticating...")
+                    logger.warning("[Auth] Cached credentials were found, but they are invalid. Re-authenticating...")
                 }
             }
         }
         
-        logger.info("Credentials expired or invalid, reauthenticating...")
+        logger.info("[Auth] Credentials expired or invalid, reauthenticating...")
         
         let authorization = try authorize(oAuth2Scopes: [.rpc, .rpcVoiceRead, .rpcVoiceWrite, .identify])
         let accessToken = try fetchAccessToken(code: authorization.data.code, redirectURI: "http://localhost")
