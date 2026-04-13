@@ -76,18 +76,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         initObservers(rpc)
         
         if !NSRunningApplication.runningApplications(withBundleIdentifier: "com.hnc.Discord").isEmpty {
-            self.statusItemTitle = String(localized: "Trying to connect...")
-            Task {
-                do {
-                    try rpc.connect()
-                }
-                catch {
-                    DispatchQueue.main.async {
-                        self.statusItemTitle = String(localized: "Inactive — Can't Connect to Dicord")
-                    }
-                    logger.info("Couldn't establish connection: \(String(describing: error))")
-                }
-            }
+            connectToDiscord(rpc)
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(audioCaptureDeviceConnected), name: AVCaptureDevice.wasConnectedNotification, object: nil)
@@ -102,6 +91,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             
             timer.fire()
+        }
+    }
+    
+    func connectToDiscord(_ rpc: RPC) {
+        self.statusItemTitle = String(localized: "Trying to connect...")
+        
+        Task {
+            for i in 1...30 {
+                do {
+                    try rpc.connect()
+                    break
+                }
+                catch {
+                    logger.error("[RPC] Connection process threw an exception: \(String(describing: error))")
+                    try? await Task.sleep(nanoseconds: 5_000_000_000 * UInt64(i))
+                }
+                
+                if rpc.user == nil {
+                    self.statusItemTitle = String(localized: "Can't Connect to Discord")
+                    logger.info("[RPC] Failed to connect: user is nil?")
+                }
+            }
         }
     }
     
