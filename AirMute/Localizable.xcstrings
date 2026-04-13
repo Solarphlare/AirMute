@@ -534,28 +534,6 @@
         }
       }
     },
-    "Inactive — Can't Connect to Dicord" : {
-      "localizations" : {
-        "en-AU" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inactive — Can't Connect to Dicord"
-          }
-        },
-        "en-CA" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inactive — Can't Connect to Dicord"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inactive — Can't Connect to Dicord"
-          }
-        }
-      }
-    },
     "Inactive — Discord Not Open" : {
       "localizations" : {
         "en-AU" : {
@@ -618,6 +596,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inactive — No Microphone Connected"
+          }
+        }
+      }
+    },
+    "Inactive — System Asleep" : {
+      "localizations" : {
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inactive — System Asleep"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inactive — System Asleep"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inactive — System Asleep"
           }
         }
       }
