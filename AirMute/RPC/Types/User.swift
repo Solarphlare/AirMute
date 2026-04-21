@@ -13,7 +13,7 @@ public struct AvatarDecorationData: Codable {
 public class User: Codable {
     public let id: String
     public let username: String
-    public let globalName: String
+    public let globalName: String?
     public let discriminator: String
     public let avatar: String?
     public let avatarDecorationData: AvatarDecorationData?
