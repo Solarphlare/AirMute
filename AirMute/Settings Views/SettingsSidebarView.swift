@@ -32,7 +32,7 @@ struct SettingsSidebarView: View {
                         }
                         
                         VStack(alignment: .leading, spacing: 2) {
-                            Text(user.globalName)
+                            Text(user.globalName ?? user.username)
                                 .fontWeight(.semibold)
                                 .font(.system(size: 13.5))
                             Text("@" + user.username)
