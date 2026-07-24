@@ -600,28 +600,6 @@
         }
       }
     },
-    "Inactive — System Asleep" : {
-      "localizations" : {
-        "en-AU" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inactive — System Asleep"
-          }
-        },
-        "en-CA" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inactive — System Asleep"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inactive — System Asleep"
-          }
-        }
-      }
-    },
     "Install Update..." : {
       "localizations" : {
         "en-AU" : {
