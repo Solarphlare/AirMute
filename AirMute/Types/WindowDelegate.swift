@@ -1,7 +1,7 @@
 import Foundation
 import AppKit
 
-class PreferencesWindowDelegate: NSObject, NSWindowDelegate {
+class WindowDelegate: NSObject, NSWindowDelegate {
     var isOpen = false
     
     func windowWillClose(_ notification: Notification) {

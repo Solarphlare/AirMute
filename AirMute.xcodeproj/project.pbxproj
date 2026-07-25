@@ -50,6 +50,10 @@
 		3E5D242F2E98444C00A57E77 /* UpdateSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5D242E2E98444C00A57E77 /* UpdateSettingsView.swift */; };
 		3E6194EC2F86B4D30042AE08 /* AirMuteDebug-Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 3E6194EB2F86B4D30042AE08 /* AirMuteDebug-Icon.icon */; };
 		3E6779B330146EF40012DD49 /* SettingsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6779B230146EF40012DD49 /* SettingsWindow.swift */; };
+		3E6779B5301470640012DD49 /* DebugWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6779B43014705F0012DD49 /* DebugWindow.swift */; };
+		3E6779BB301472110012DD49 /* DebugWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E6779BA301472110012DD49 /* DebugWindow.storyboard */; };
+		3E6779BD301472AE0012DD49 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6779BC301472AE0012DD49 /* DebugView.swift */; };
+		3E6779BF301474360012DD49 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6779BE301474360012DD49 /* DebugViewController.swift */; };
 		3E77DF4C2E9802B5002C23D3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E77DF4B2E9802B1002C23D3 /* SettingsView.swift */; };
 		3E77DF4F2E9808AC002C23D3 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E77DF4E2E9808A6002C23D3 /* GeneralSettingsView.swift */; };
 		3E77DF532E980A9E002C23D3 /* BehaviorSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E77DF522E980A9E002C23D3 /* BehaviorSettingsView.swift */; };
@@ -60,7 +64,7 @@
 		3E9ED34A2C78F18C00FB4370 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E9ED3492C78F18C00FB4370 /* Assets.xcassets */; };
 		3EA1222A2E73EBE8008A5F48 /* AirMute-Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 3EA122292E73EBE8008A5F48 /* AirMute-Icon.icon */; };
 		3EA87ACB2D8BE109007CBB90 /* Socket in Frameworks */ = {isa = PBXBuildFile; productRef = 3EA87ACA2D8BE109007CBB90 /* Socket */; };
-		3EAC48582C7A92AF00B03795 /* PreferencesWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC48572C7A92AF00B03795 /* PreferencesWindowDelegate.swift */; };
+		3EAC48582C7A92AF00B03795 /* WindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC48572C7A92AF00B03795 /* WindowDelegate.swift */; };
 		3EAC5CD72E8F82B30074193E /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC5CD62E8F82B10074193E /* Preferences.swift */; };
 		3EAC5CD92E8F83330074193E /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC5CD82E8F83320074193E /* Menu.swift */; };
 		3EAC5CDE2E8F8A4F0074193E /* ChannelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC5CDD2E8F8A4F0074193E /* ChannelType.swift */; };
@@ -116,6 +120,10 @@
 		3E5D242E2E98444C00A57E77 /* UpdateSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSettingsView.swift; sourceTree = "<group>"; };
 		3E6194EB2F86B4D30042AE08 /* AirMuteDebug-Icon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "AirMuteDebug-Icon.icon"; sourceTree = "<group>"; };
 		3E6779B230146EF40012DD49 /* SettingsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindow.swift; sourceTree = "<group>"; };
+		3E6779B43014705F0012DD49 /* DebugWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugWindow.swift; sourceTree = "<group>"; };
+		3E6779BA301472110012DD49 /* DebugWindow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DebugWindow.storyboard; sourceTree = "<group>"; };
+		3E6779BC301472AE0012DD49 /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
+		3E6779BE301474360012DD49 /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		3E77DF4B2E9802B1002C23D3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3E77DF4E2E9808A6002C23D3 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		3E77DF522E980A9E002C23D3 /* BehaviorSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviorSettingsView.swift; sourceTree = "<group>"; };
@@ -127,7 +135,7 @@
 		3E9ED3492C78F18C00FB4370 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E9ED34E2C78F18C00FB4370 /* AirMute.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AirMute.entitlements; sourceTree = "<group>"; };
 		3EA122292E73EBE8008A5F48 /* AirMute-Icon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "AirMute-Icon.icon"; sourceTree = "<group>"; };
-		3EAC48572C7A92AF00B03795 /* PreferencesWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowDelegate.swift; sourceTree = "<group>"; };
+		3EAC48572C7A92AF00B03795 /* WindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowDelegate.swift; sourceTree = "<group>"; };
 		3EAC5CD62E8F82B10074193E /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		3EAC5CD82E8F83320074193E /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		3EAC5CDD2E8F8A4F0074193E /* ChannelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelType.swift; sourceTree = "<group>"; };
@@ -163,7 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				3E6779B230146EF40012DD49 /* SettingsWindow.swift */,
-				3EAC48572C7A92AF00B03795 /* PreferencesWindowDelegate.swift */,
+				3EAC48572C7A92AF00B03795 /* WindowDelegate.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -246,6 +254,16 @@
 			path = Requests;
 			sourceTree = "<group>";
 		};
+		3E6779C03014743F0012DD49 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				3E6779B43014705F0012DD49 /* DebugWindow.swift */,
+				3E6779BC301472AE0012DD49 /* DebugView.swift */,
+				3E6779BE301474360012DD49 /* DebugViewController.swift */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
 		3E77DF4D2E98089E002C23D3 /* Settings Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +298,7 @@
 		3E9ED3442C78F18B00FB4370 /* AirMute */ = {
 			isa = PBXGroup;
 			children = (
+				3E6779C03014743F0012DD49 /* Debug */,
 				3E1D91622C7914CC00331448 /* RPC */,
 				3E77DF4D2E98089E002C23D3 /* Settings Views */,
 				3E1855C12C78FDDD001861B4 /* Types */,
@@ -290,6 +309,7 @@
 				3E6194EB2F86B4D30042AE08 /* AirMuteDebug-Icon.icon */,
 				3E45C9ED2C7959A7000750ED /* Info.plist */,
 				3E24AEF42D9109AD006E8C14 /* Main.storyboard */,
+				3E6779BA301472110012DD49 /* DebugWindow.storyboard */,
 				3EB454A32F46CD2A0006A7D4 /* AppLogger.swift */,
 				3E9ED3452C78F18B00FB4370 /* AppDelegate.swift */,
 				3E45C9E92C7942A3000750ED /* AudioInputController.swift */,
@@ -385,6 +405,7 @@
 			files = (
 				3E9ED34A2C78F18C00FB4370 /* Assets.xcassets in Resources */,
 				3E6194EC2F86B4D30042AE08 /* AirMuteDebug-Icon.icon in Resources */,
+				3E6779BB301472110012DD49 /* DebugWindow.storyboard in Resources */,
 				3EA1222A2E73EBE8008A5F48 /* AirMute-Icon.icon in Resources */,
 				3E4E89EC2EA372AE00786AE5 /* Localizable.xcstrings in Resources */,
 				3E24AEF62D9109AD006E8C14 /* Main.storyboard in Resources */,
@@ -404,6 +425,7 @@
 				3EAC5CD72E8F82B30074193E /* Preferences.swift in Sources */,
 				3E1D91AA2C79387400331448 /* ResponseUnsubscribe.swift in Sources */,
 				3E1D91B42C79388E00331448 /* RequestHandshake.swift in Sources */,
+				3E6779B5301470640012DD49 /* DebugWindow.swift in Sources */,
 				3E9ED3462C78F18B00FB4370 /* AppDelegate.swift in Sources */,
 				3EB454A42F46CD2C0006A7D4 /* AppLogger.swift in Sources */,
 				3EAC5CE02E8F8C2A0074193E /* ResponseGetSelectedVoiceChannel.swift in Sources */,
@@ -421,6 +443,7 @@
 				3E77DF572E982912002C23D3 /* BackStack.swift in Sources */,
 				3EAC5CDE2E8F8A4F0074193E /* ChannelType.swift in Sources */,
 				3E0DFB332F37B9EC0076B6C7 /* Observers.swift in Sources */,
+				3E6779BD301472AE0012DD49 /* DebugView.swift in Sources */,
 				3E1D91B52C79388E00331448 /* RequestAuthorize.swift in Sources */,
 				3E45C9EC2C794CC1000750ED /* Controls.swift in Sources */,
 				3E45C9CC2C793A7F000750ED /* RPCToken.swift in Sources */,
@@ -435,7 +458,7 @@
 				3E45C9EA2C7942A3000750ED /* AudioInputController.swift in Sources */,
 				3E1D919D2C79225E00331448 /* CommandError.swift in Sources */,
 				3E1D916C2C7919E100331448 /* RPCError.swift in Sources */,
-				3EAC48582C7A92AF00B03795 /* PreferencesWindowDelegate.swift in Sources */,
+				3EAC48582C7A92AF00B03795 /* WindowDelegate.swift in Sources */,
 				3E83F6402EA45B6F003D9298 /* SettingsSidebarView.swift in Sources */,
 				3EAC5CD92E8F83330074193E /* Menu.swift in Sources */,
 				3E1D91692C79160300331448 /* Constants.swift in Sources */,
@@ -448,6 +471,7 @@
 				3E77DF4F2E9808AC002C23D3 /* GeneralSettingsView.swift in Sources */,
 				3E6779B330146EF40012DD49 /* SettingsWindow.swift in Sources */,
 				3E2AE76D2C7A309C0003D244 /* MuteStateHandler.swift in Sources */,
+				3E6779BF301474360012DD49 /* DebugViewController.swift in Sources */,
 				3E47AF862E9BC0BC00E72ABF /* AboutSettingsView.swift in Sources */,
 				3E45C9C72C7939AB000750ED /* RequestError.swift in Sources */,
 				3E1855C32C78FDE3001861B4 /* Frame.swift in Sources */,
@@ -622,7 +646,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = "2.5.0-dev";
+				MARKETING_VERSION = 2.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cominatyou.AirMute;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -655,7 +679,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = "2.5.0-dev";
+				MARKETING_VERSION = 2.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cominatyou.AirMute;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

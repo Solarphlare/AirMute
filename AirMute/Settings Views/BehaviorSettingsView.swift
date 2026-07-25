@@ -58,13 +58,13 @@ struct BehaviorSettingsView: View {
     
     func getClickToDeafenText() -> String {
         var actionText = "clicking the stem or pressing the digital crown"
-        let connectedAirPodsModels = appDelegate.connectedAirPodsModels
+        let connectedAirPodsModels = appDelegate.connectedAirPodsVariants
         
-        if connectedAirPodsModels.contains(.pro) || connectedAirPodsModels.contains(.regular), connectedAirPodsModels.contains(.max) {
+        if connectedAirPodsModels.contains(.pro) || connectedAirPodsModels.contains(.base), connectedAirPodsModels.contains(.max) {
             actionText = "clicking the stem or pressing the digital crown"
         }
         else if (connectedAirPodsModels.count == 1) {
-            if connectedAirPodsModels.contains(.pro) || connectedAirPodsModels.contains(.regular) {
+            if connectedAirPodsModels.contains(.pro) || connectedAirPodsModels.contains(.base) {
                 actionText = "clicking the stem"
             }
             else if connectedAirPodsModels.contains(.max) {

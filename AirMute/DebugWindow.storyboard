@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24765"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="C1d-Ok-oEA">
+            <objects>
+                <windowController id="idV-dK-2CP" sceneMemberID="viewController">
+                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="SR3-Uu-yvH">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="211" y="270" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1512" height="949"/>
+                        <view key="contentView" id="ujF-hJ-pdL">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </view>
+                        <connections>
+                            <outlet property="delegate" destination="idV-dK-2CP" id="Pa1-sG-77N"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="lPY-hx-5wN" kind="relationship" relationship="window.shadowedContentViewController" id="hKu-Ad-4EH"/>
+                    </connections>
+                </windowController>
+                <customObject id="IKh-2H-iL2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-44" y="-285"/>
+        </scene>
+        <!--Debug View Controller-->
+        <scene sceneID="3dL-Y4-NxP">
+            <objects>
+                <viewController storyboardIdentifier="DebugHostingController" id="lPY-hx-5wN" customClass="DebugViewController" customModule="AirMute" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="piX-wQ-t0O">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="OLt-Wf-JNb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-44" y="-698"/>
+        </scene>
+    </scenes>
+</document>

@@ -46,9 +46,12 @@ struct UpdateChecker {
             
             var updateAvailable = false
             
-            for i in 0..<installedVersionSplit.count {
+            for i in 0..<min(installedVersionSplit.count, latestVersionSplit.count) {
                 if latestVersionSplit[i] > installedVersionSplit[i] {
                     updateAvailable = true
+                    break
+                }
+                if (installedVersionSplit[i] > latestVersionSplit[i]) {
                     break
                 }
             }

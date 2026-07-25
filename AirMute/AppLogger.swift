@@ -4,7 +4,7 @@ import AppKit
 
 class AppLogger {
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "AirMute", category: "AirMute-UserLogs")
-    fileprivate static let logFile = FileManager.default.homeDirectoryForCurrentUser.appending(path: "Library/Logs/AirMute.log", directoryHint: .notDirectory)
+    static let logFile = FileManager.default.homeDirectoryForCurrentUser.appending(path: "Library/Logs/AirMute.log", directoryHint: .notDirectory)
     
     private var fileHandle: FileHandle?
     

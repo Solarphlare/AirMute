@@ -1,6 +1,7 @@
 import Foundation
 import AVFAudio
 import AppKit
+import SwiftUI
 
 extension AppDelegate {
     func initRPCEvents(_ rpc: RPC) {
@@ -10,6 +11,7 @@ extension AppDelegate {
                 
                 rpc.user = authentication.data.user
                 logger.info("[RPC] Connected to @\(authentication.data.user.username)!")
+                withAnimation { self.connectedToDiscord = true }
                 
                 self.statusItemTitle = "Inactive — Not in Voice"
                 
@@ -83,6 +85,8 @@ extension AppDelegate {
         rpc.onDisconnect { [weak self] rpcParam, event in
             Task { @MainActor in
                 guard let self else { return }
+                
+                withAnimation { self.connectedToDiscord = false }
 
                 switch event.code {
                 case .invalidClientID:

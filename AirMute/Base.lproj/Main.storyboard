@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24412"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24765"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -86,10 +86,16 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VcZ-tS-67B"/>
-                                        <menuItem title="Bad Apple" tag="1" keyEquivalent="B" id="Z9g-DB-rcE">
-                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                        <menuItem title="Show Debug Window" secondaryImage="ant" catalog="system" tag="3" keyEquivalent="D" id="Z9g-DB-rcE">
                                             <connections>
                                                 <action selector="menuItemClicked:" target="Voe-Tx-rLC" id="fJy-IB-BGn"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Y8B-Vf-vHR"/>
+                                        <menuItem title="Bad Apple" tag="1" keyEquivalent="B" id="Yam-QE-L4C">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="menuItemClicked:" target="Voe-Tx-rLC" id="Lhh-gN-CG2"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Machine Love" tag="2" keyEquivalent="M" id="kja-8h-AoM">
@@ -137,4 +143,7 @@
             <point key="canvasLocation" x="75" y="706"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ant" catalog="system" width="14" height="18"/>
+    </resources>
 </document>

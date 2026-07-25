@@ -6,12 +6,10 @@ import AVFoundation
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
+    @Published var connectedAirPodsVariants = Set<AirPodsVariant>()
     @Published var connectedAirPodsModels = Set<AirPodsModel>()
-    
-    var controller: AudioInputController?
-    var cancellable: AnyCancellable?
-    var clientInitiatedAction = false
-    var isMicrophoneConnected = false {
+    @Published var connectedToDiscord = false
+    @Published var isMicrophoneConnected = false {
         didSet {
             if !isMicrophoneConnected {
                 self.statusItem.title = String(localized: "Inactive — No Microphone Connected")
@@ -21,6 +19,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             }
         }
     }
+    
+    var controller: AudioInputController?
+    var cancellable: AnyCancellable?
+    var clientInitiatedAction = false
     
     var statusItemTitle = "Inactive — Discord Not Open" {
         didSet {
@@ -38,7 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     var discordConnectionTask: Task<Void, Never>?
     var shouldReconnectToDiscord = true
     
-    let windowDelegate = PreferencesWindowDelegate()
+    let windowDelegate = WindowDelegate()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         if UserDefaults.standard.bool(forKey: "update_available") {
@@ -70,7 +72,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         }
         
         if AVCaptureDevice.default(for: .audio) != nil {
-            isMicrophoneConnected = true
+            withAnimation { isMicrophoneConnected = true }
             controller = AudioInputController()
             
             updateConnectedAirPods()
@@ -150,7 +152,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         if (isMicrophoneConnected) { return }
         
         logger.info("An audio capture device was connected.")
-        isMicrophoneConnected = true
+        withAnimation { isMicrophoneConnected = true }
         controller = AudioInputController()
         
         if (try? rpc?.getSelectedVoiceChannel()) != nil {
@@ -165,7 +167,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         
         if AVCaptureDevice.default(for: .audio) == nil {
             logger.info("An audio capture device was disconnected, and none are left.")
-            isMicrophoneConnected = false
+            withAnimation { isMicrophoneConnected = false }
             controller?.stop()
             controller = nil
         }
@@ -185,6 +187,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         else if (sender.tag == 2) {
             NSWorkspace.shared.open(URL(string: "https://www.youtube.com/watch?v=sqK-jh4TDXo")!)
         }
+        else if (sender.tag == 3) {
+            openDebugWindow()
+        }
     }
     
     
@@ -200,10 +205,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     
     func updateConnectedAirPods() {
         Task {
-            let returnedAirPodsModels = await getConnectedAirPods()
+            let returnedAirPods = await getConnectedAirPods()
             DispatchQueue.main.async {
                 withAnimation {
-                    self.connectedAirPodsModels = returnedAirPodsModels
+                    self.connectedAirPodsVariants = returnedAirPods.variants
+                    self.connectedAirPodsModels = returnedAirPods.models
                 }
             }
         }

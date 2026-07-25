@@ -58,6 +58,16 @@
         }
       }
     },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
     "© %@ Solarphlare" : {
       "shouldTranslate" : false
     },
@@ -173,6 +183,28 @@
         }
       }
     },
+    "Audio Input Device Available" : {
+      "localizations" : {
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Audio Input Device Available"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Audio Input Device Available"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Audio Input Device Available"
+          }
+        }
+      }
+    },
     "Back" : {
       "localizations" : {
         "en" : {
@@ -228,6 +260,9 @@
           }
         }
       }
+    },
+    "Bluetooth Permission State" : {
+
     },
     "By Solarphlare" : {
       "localizations" : {
@@ -394,6 +429,116 @@
         }
       }
     },
+    "Compatible AirPods Available" : {
+      "localizations" : {
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compatible AirPods Available"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compatible AirPods Available"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compatible AirPods Available"
+          }
+        }
+      }
+    },
+    "Connected AirPods Models" : {
+      "localizations" : {
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connected AirPods Models"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connected AirPods Models"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connected AirPods Models"
+          }
+        }
+      }
+    },
+    "Connected AirPods Variants" : {
+      "localizations" : {
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connected AirPods Variants"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connected AirPods Variants"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connected AirPods Variants"
+          }
+        }
+      }
+    },
+    "Connected Devices" : {
+      "localizations" : {
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connected Devices"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connected Devices"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connected Devices"
+          }
+        }
+      }
+    },
+    "Connected to Discord" : {
+      "localizations" : {
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connected to Discord"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connected to Discord"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connected to Discord"
+          }
+        }
+      }
+    },
     "Copyright" : {
       "localizations" : {
         "en" : {
@@ -418,6 +563,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Copyright"
+          }
+        }
+      }
+    },
+    "Debug" : {
+      "localizations" : {
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Debug"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Debug"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Debug"
           }
         }
       }
@@ -694,6 +861,28 @@
         }
       }
     },
+    "Open Log File" : {
+      "localizations" : {
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Log File"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Log File"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Log File"
+          }
+        }
+      }
+    },
     "Quit" : {
       "comment" : "Title of the menu item that closes the app.",
       "isCommentAutoGenerated" : true,
@@ -814,6 +1003,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Solarphlare/AirMute"
+          }
+        }
+      }
+    },
+    "State" : {
+      "localizations" : {
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "State"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "State"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "State"
           }
         }
       }
