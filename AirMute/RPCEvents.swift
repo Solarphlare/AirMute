@@ -1,5 +1,6 @@
 import Foundation
 import AVFAudio
+import AppKit
 
 extension AppDelegate {
     func initRPCEvents(_ rpc: RPC) {
@@ -79,20 +80,35 @@ extension AppDelegate {
             }
         }
         
-        rpc.onDisconnect { rpcParam, event in
-            switch event.code {
-            case .invalidClientID:
-                self.statusItemTitle = "Error — Invalid Client ID"
-                logger.error("[RPC] Failed to connect - Invalid Client ID: \(event.message)")
-            case .invalidOrigin:
-                self.statusItemTitle = "Error — Invalid RPC Origin"
-                logger.error("[RPC] Failed to connect - Invalid RPC Origin: \(event.message)")
-            case .socketDisconnected:
-                self.statusItemTitle = "Error — Unable to Connect"
-                logger.error("[RPC] Failed to connect - socket died (\(event.message))")
-            default:
-                self.statusItemTitle = "Error — Unable to Connect"
-                logger.error("[RPC] Got disocnnect OpCode: \(event.code.rawValue) \(event.message)")
+        rpc.onDisconnect { [weak self] rpcParam, event in
+            Task { @MainActor in
+                guard let self else { return }
+
+                switch event.code {
+                case .invalidClientID:
+                    self.statusItemTitle = "Error — Invalid Client ID"
+                    logger.error("[RPC] Failed to connect - Invalid Client ID: \(event.message)")
+                case .invalidOrigin:
+                    self.statusItemTitle = "Error — Invalid RPC Origin"
+                    logger.error("[RPC] Failed to connect - Invalid RPC Origin: \(event.message)")
+                case .socketDisconnected:
+                    rpcParam.user = nil
+
+                    let discordIsRunning = !NSRunningApplication.runningApplications(
+                        withBundleIdentifier: "com.hnc.Discord"
+                    ).isEmpty
+
+                    if self.shouldReconnectToDiscord && discordIsRunning {
+                        self.statusItemTitle = String(localized: "Trying to connect...")
+                        logger.warning("[RPC] Socket disconnected; reconnecting automatically")
+                        self.connectToDiscord(rpcParam)
+                    } else {
+                        self.statusItemTitle = String(localized: "Inactive — Discord Not Open")
+                    }
+                default:
+                    self.statusItemTitle = "Error — Unable to Connect"
+                    logger.error("[RPC] Got disocnnect OpCode: \(event.code.rawValue) \(event.message)")
+                }
             }
         }
     }

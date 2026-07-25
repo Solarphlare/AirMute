@@ -48,6 +48,7 @@ extension RPC {
             }
         }
 
+        self.closeSocket()
         throw RPCError.udsNotFound(path: path)
     }
     
@@ -126,10 +127,15 @@ extension RPC {
                     let headerRawPtr = UnsafeRawPointer(headerPtr)
                     defer { free(headerPtr) }
 
-                    var response = try self.socket?.read(into: headerPtr, bufSize: 8, truncate: true)
-                    guard response! > 0 else {
+                    let headerResponse = try self.socket?.read(into: headerPtr, bufSize: 8, truncate: true)
+                    guard let headerResponse, headerResponse > 0 else {
                         logger.warning("[RPC] Receive: header length is 0")
-                        continue
+                        self.closeSocket()
+                        self.disconnectHandler?(
+                            self,
+                            EventClose(code: .socketDisconnected, message: "Socket Disconnected")
+                        )
+                        return
                     }
 
                     let opValue = headerRawPtr.load(as: UInt32.self)
@@ -142,16 +148,31 @@ extension RPC {
                     let payloadPtr = UnsafeMutablePointer<Int8>.allocate(capacity: Int(length))
                     defer { free(payloadPtr) }
 
-                    response = try self.socket?.read(into: payloadPtr, bufSize: Int(length), truncate: true)
-                    guard response! > 0 else {
+                    let payloadResponse = try self.socket?.read(
+                        into: payloadPtr,
+                        bufSize: Int(length),
+                        truncate: true
+                    )
+                    guard let payloadResponse, payloadResponse > 0 else {
                         logger.warning("[RPC] Receive: payload length is 0")
-                        continue
+                        self.closeSocket()
+                        self.disconnectHandler?(
+                            self,
+                            EventClose(code: .socketDisconnected, message: "Socket Disconnected")
+                        )
+                        return
                     }
 
                     let data = Data(bytes: UnsafeRawPointer(payloadPtr), count: Int(length))
                     self.handlePayload(op, data)
                 } catch {
                     logger.error("[RPC] Receive: failed with error: \(error.localizedDescription)")
+                    self.closeSocket()
+                    self.disconnectHandler?(
+                        self,
+                        EventClose(code: .socketDisconnected, message: "Socket Disconnected")
+                    )
+                    return
                 }
             }
         }

@@ -32,6 +32,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var updateMenuItem = NSMenuItem(title: String(localized: "Install Update..."), action: #selector(openReleasesPage), keyEquivalent: "")
     
     var rpc: RPC?
+    var discordConnectionTask: Task<Void, Never>?
+    var shouldReconnectToDiscord = true
     
     let windowDelegate = PreferencesWindowDelegate()
     
@@ -95,23 +97,40 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func connectToDiscord(_ rpc: RPC) {
+        guard discordConnectionTask == nil else { return }
+
         self.statusItemTitle = String(localized: "Trying to connect...")
         
-        Task {
-            for i in 1...30 {
+        discordConnectionTask = Task { @MainActor [weak self] in
+            guard let self else { return }
+            defer { self.discordConnectionTask = nil }
+
+            var retryDelay: UInt64 = 1
+
+            while !Task.isCancelled && self.shouldReconnectToDiscord {
+                guard !NSRunningApplication.runningApplications(
+                    withBundleIdentifier: "com.hnc.Discord"
+                ).isEmpty else {
+                    self.statusItemTitle = String(localized: "Inactive — Discord Not Open")
+                    return
+                }
+
                 do {
                     try rpc.connect()
-                    break
+                    return
                 }
                 catch {
                     logger.error("[RPC] Connection process threw an exception: \(String(describing: error))")
-                    try? await Task.sleep(nanoseconds: 5_000_000_000 * UInt64(i))
-                }
-                
-                if rpc.user == nil {
                     self.statusItemTitle = String(localized: "Can't Connect to Discord")
-                    logger.info("[RPC] Failed to connect: user is nil?")
                 }
+
+                do {
+                    try await Task.sleep(nanoseconds: retryDelay * 1_000_000_000)
+                } catch {
+                    return
+                }
+
+                retryDelay = min(retryDelay * 2, 30)
             }
         }
     }
@@ -161,6 +180,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     func applicationWillTerminate(_ aNotification: Notification) {
+        shouldReconnectToDiscord = false
+        discordConnectionTask?.cancel()
         rpc?.closeSocket()
     }
 
@@ -168,4 +189,3 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true
     }
 }
-
