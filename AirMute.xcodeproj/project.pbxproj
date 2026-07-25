@@ -38,6 +38,7 @@
 		3E24AEF92D910BDF006E8C14 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E24AEF82D910BDD006E8C14 /* ViewController.swift */; };
 		3E2AE76B2C7A2C540003D244 /* EventVoiceConnectionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2AE76A2C7A2C540003D244 /* EventVoiceConnectionStatus.swift */; };
 		3E2AE76D2C7A309C0003D244 /* MuteStateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2AE76C2C7A309C0003D244 /* MuteStateHandler.swift */; };
+		3E3EA54D30133FB400594FA0 /* BluetoothController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EA54C30133FAB00594FA0 /* BluetoothController.swift */; };
 		3E45C9C72C7939AB000750ED /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E45C9C62C7939AB000750ED /* RequestError.swift */; };
 		3E45C9CA2C793A66000750ED /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E45C9C92C793A66000750ED /* AccessToken.swift */; };
 		3E45C9CC2C793A7F000750ED /* RPCToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E45C9CB2C793A7F000750ED /* RPCToken.swift */; };
@@ -46,9 +47,9 @@
 		3E45C9EF2C7993A5000750ED /* AuthenticationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E45C9EE2C7993A5000750ED /* AuthenticationController.swift */; };
 		3E47AF862E9BC0BC00E72ABF /* AboutSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E47AF852E9BC0BC00E72ABF /* AboutSettingsView.swift */; };
 		3E4E89EC2EA372AE00786AE5 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3E4E89EB2EA372AE00786AE5 /* Localizable.xcstrings */; };
-		3E59DD1B2E9ECF360075A1B2 /* SettingsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E59DD1A2E9ECF270075A1B2 /* SettingsWindow.swift */; };
 		3E5D242F2E98444C00A57E77 /* UpdateSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5D242E2E98444C00A57E77 /* UpdateSettingsView.swift */; };
 		3E6194EC2F86B4D30042AE08 /* AirMuteDebug-Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 3E6194EB2F86B4D30042AE08 /* AirMuteDebug-Icon.icon */; };
+		3E6779B330146EF40012DD49 /* SettingsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6779B230146EF40012DD49 /* SettingsWindow.swift */; };
 		3E77DF4C2E9802B5002C23D3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E77DF4B2E9802B1002C23D3 /* SettingsView.swift */; };
 		3E77DF4F2E9808AC002C23D3 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E77DF4E2E9808A6002C23D3 /* GeneralSettingsView.swift */; };
 		3E77DF532E980A9E002C23D3 /* BehaviorSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E77DF522E980A9E002C23D3 /* BehaviorSettingsView.swift */; };
@@ -102,6 +103,7 @@
 		3E24AEF82D910BDD006E8C14 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3E2AE76A2C7A2C540003D244 /* EventVoiceConnectionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventVoiceConnectionStatus.swift; sourceTree = "<group>"; };
 		3E2AE76C2C7A309C0003D244 /* MuteStateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuteStateHandler.swift; sourceTree = "<group>"; };
+		3E3EA54C30133FAB00594FA0 /* BluetoothController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothController.swift; sourceTree = "<group>"; };
 		3E45C9C62C7939AB000750ED /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 		3E45C9C92C793A66000750ED /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
 		3E45C9CB2C793A7F000750ED /* RPCToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPCToken.swift; sourceTree = "<group>"; };
@@ -111,9 +113,9 @@
 		3E45C9EE2C7993A5000750ED /* AuthenticationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationController.swift; sourceTree = "<group>"; };
 		3E47AF852E9BC0BC00E72ABF /* AboutSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSettingsView.swift; sourceTree = "<group>"; };
 		3E4E89EB2EA372AE00786AE5 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		3E59DD1A2E9ECF270075A1B2 /* SettingsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindow.swift; sourceTree = "<group>"; };
 		3E5D242E2E98444C00A57E77 /* UpdateSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSettingsView.swift; sourceTree = "<group>"; };
 		3E6194EB2F86B4D30042AE08 /* AirMuteDebug-Icon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "AirMuteDebug-Icon.icon"; sourceTree = "<group>"; };
+		3E6779B230146EF40012DD49 /* SettingsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindow.swift; sourceTree = "<group>"; };
 		3E77DF4B2E9802B1002C23D3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3E77DF4E2E9808A6002C23D3 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		3E77DF522E980A9E002C23D3 /* BehaviorSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviorSettingsView.swift; sourceTree = "<group>"; };
@@ -160,7 +162,7 @@
 		3E1855C12C78FDDD001861B4 /* Types */ = {
 			isa = PBXGroup;
 			children = (
-				3E59DD1A2E9ECF270075A1B2 /* SettingsWindow.swift */,
+				3E6779B230146EF40012DD49 /* SettingsWindow.swift */,
 				3EAC48572C7A92AF00B03795 /* PreferencesWindowDelegate.swift */,
 			);
 			path = Types;
@@ -288,11 +290,12 @@
 				3E6194EB2F86B4D30042AE08 /* AirMuteDebug-Icon.icon */,
 				3E45C9ED2C7959A7000750ED /* Info.plist */,
 				3E24AEF42D9109AD006E8C14 /* Main.storyboard */,
+				3EB454A32F46CD2A0006A7D4 /* AppLogger.swift */,
 				3E9ED3452C78F18B00FB4370 /* AppDelegate.swift */,
 				3E45C9E92C7942A3000750ED /* AudioInputController.swift */,
 				3E45C9EE2C7993A5000750ED /* AuthenticationController.swift */,
+				3E3EA54C30133FAB00594FA0 /* BluetoothController.swift */,
 				3E45C9EB2C794CC1000750ED /* Controls.swift */,
-				3EB454A32F46CD2A0006A7D4 /* AppLogger.swift */,
 				3EAC5CD82E8F83320074193E /* Menu.swift */,
 				3E2AE76C2C7A309C0003D244 /* MuteStateHandler.swift */,
 				3E0DFB322F37B9EA0076B6C7 /* Observers.swift */,
@@ -430,7 +433,6 @@
 				3E1855C02C78FC42001861B4 /* ResponseGetVoiceSettings.swift in Sources */,
 				3E1D91852C791F9F00331448 /* Socket.swift in Sources */,
 				3E45C9EA2C7942A3000750ED /* AudioInputController.swift in Sources */,
-				3E59DD1B2E9ECF360075A1B2 /* SettingsWindow.swift in Sources */,
 				3E1D919D2C79225E00331448 /* CommandError.swift in Sources */,
 				3E1D916C2C7919E100331448 /* RPCError.swift in Sources */,
 				3EAC48582C7A92AF00B03795 /* PreferencesWindowDelegate.swift in Sources */,
@@ -441,8 +443,10 @@
 				3E45C9EF2C7993A5000750ED /* AuthenticationController.swift in Sources */,
 				3E2AE76B2C7A2C540003D244 /* EventVoiceConnectionStatus.swift in Sources */,
 				3E1D91A92C79387400331448 /* ResponseAuthenticate.swift in Sources */,
+				3E3EA54D30133FB400594FA0 /* BluetoothController.swift in Sources */,
 				3E1D919A2C79221400331448 /* User.swift in Sources */,
 				3E77DF4F2E9808AC002C23D3 /* GeneralSettingsView.swift in Sources */,
+				3E6779B330146EF40012DD49 /* SettingsWindow.swift in Sources */,
 				3E2AE76D2C7A309C0003D244 /* MuteStateHandler.swift in Sources */,
 				3E47AF862E9BC0BC00E72ABF /* AboutSettingsView.swift in Sources */,
 				3E45C9C72C7939AB000750ED /* RequestError.swift in Sources */,
@@ -601,7 +605,7 @@
 				CODE_SIGN_ENTITLEMENTS = AirMute/AirMute.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 29;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -609,6 +613,7 @@
 				INFOPLIST_FILE = AirMute/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "AirMute uses Bluetooth to determine the type of AirPods you're wearing.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Solarphlare — All Rights Reserved.";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -617,7 +622,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = "2.4.7-dev";
+				MARKETING_VERSION = "2.5.0-dev";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cominatyou.AirMute;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -633,7 +638,7 @@
 				CODE_SIGN_ENTITLEMENTS = AirMute/AirMute.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 29;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -641,6 +646,7 @@
 				INFOPLIST_FILE = AirMute/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "AirMute uses Bluetooth to determine the type of AirPods you're wearing.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Solarphlare — All Rights Reserved.";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -649,7 +655,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = "2.4.7-dev";
+				MARKETING_VERSION = "2.5.0-dev";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cominatyou.AirMute;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

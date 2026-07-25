@@ -1,10 +1,13 @@
 import AppKit
+import SwiftUI
 import AVFAudio
 import Combine
 import AVFoundation
 
 @main
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
+    @Published var connectedAirPodsModels = Set<AirPodsModel>()
+    
     var controller: AudioInputController?
     var cancellable: AnyCancellable?
     var clientInitiatedAction = false
@@ -69,6 +72,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if AVCaptureDevice.default(for: .audio) != nil {
             isMicrophoneConnected = true
             controller = AudioInputController()
+            
+            updateConnectedAirPods()
         }
         
         let rpc = RPC(clientId: clientId!, clientSecret: clientSecret!)
@@ -140,6 +145,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         
+        updateConnectedAirPods()
+        
         if (isMicrophoneConnected) { return }
         
         logger.info("An audio capture device was connected.")
@@ -162,6 +169,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             controller?.stop()
             controller = nil
         }
+        
+        updateConnectedAirPods()
     }
     
     @objc func openReleasesPage() {
@@ -187,5 +196,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         return true
+    }
+    
+    func updateConnectedAirPods() {
+        Task {
+            let returnedAirPodsModels = await getConnectedAirPods()
+            DispatchQueue.main.async {
+                withAnimation {
+                    self.connectedAirPodsModels = returnedAirPodsModels
+                }
+            }
+        }
     }
 }

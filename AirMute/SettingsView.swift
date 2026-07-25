@@ -48,6 +48,7 @@ struct SettingsView: View {
         .onChange(of: selectedPage) {
             backStack.navigate(to: selectedPage)
         }
+        .environmentObject(NSApplication.shared.delegate as! AppDelegate)
     }
 }
 

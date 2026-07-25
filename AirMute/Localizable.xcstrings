@@ -947,6 +947,7 @@
       }
     },
     "When deafened, clicking the stem or pressing the digital crown will not do anything." : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -975,6 +976,7 @@
       }
     },
     "When deafened, clicking the stem or pressing the digital crown will undeafen and unmute you." : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
