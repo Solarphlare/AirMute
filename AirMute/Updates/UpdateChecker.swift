@@ -13,6 +13,19 @@ enum UpdateError: Error, CustomStringConvertible {
 }
 
 struct UpdateChecker {
+    static func isVersion(_ version: [Int], newerThan otherVersion: [Int]) -> Bool {
+        for index in 0..<max(version.count, otherVersion.count) {
+            let component = index < version.count ? version[index] : 0
+            let otherComponent = index < otherVersion.count ? otherVersion[index] : 0
+
+            if component != otherComponent {
+                return component > otherComponent
+            }
+        }
+
+        return false
+    }
+
     static func checkForUpdates() async {
         guard !UserDefaults.standard.bool(forKey: "update_available") else { return }
         
@@ -40,23 +53,11 @@ struct UpdateChecker {
             let latestVersionSplit = latestVersionName.split(separator: ".").compactMap({ i in Int(i) })
             let installedVersionSplit = installedVersion.split(separator: ".").compactMap({ i in Int(i) })
             
-            guard latestVersionSplit.count > 0, installedVersionSplit.count > 0, installedVersionSplit.count == latestVersionSplit.count else {
+            guard latestVersionSplit.count > 0, installedVersionSplit.count > 0 else {
                 throw UpdateError.runtimeError("Version splits either were empty or malformed")
             }
             
-            var updateAvailable = false
-            
-            for i in 0..<min(installedVersionSplit.count, latestVersionSplit.count) {
-                if latestVersionSplit[i] > installedVersionSplit[i] {
-                    updateAvailable = true
-                    break
-                }
-                if (installedVersionSplit[i] > latestVersionSplit[i]) {
-                    break
-                }
-            }
-            
-            guard updateAvailable else {
+            guard isVersion(latestVersionSplit, newerThan: installedVersionSplit) else {
                 logger.info("[UpdateChecker] No updates available.")
                 return
             }

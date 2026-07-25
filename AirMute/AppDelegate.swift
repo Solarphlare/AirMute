@@ -46,11 +46,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         if UserDefaults.standard.bool(forKey: "update_available") {
             if let installedVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
                 let installedVersionSplit = installedVersion.split(separator: ".").compactMap({ i in Int(i) })
-                let latestVersionSplit = UserDefaults.standard.array(forKey: "latest_version") as! [Int]
-            
-                if latestVersionSplit.elementsEqual(installedVersionSplit) {
-                    logger.info("App was updated since last launch")
+
+                if let latestVersionSplit = UserDefaults.standard.array(forKey: "latest_version") as? [Int],
+                   !UpdateChecker.isVersion(latestVersionSplit, newerThan: installedVersionSplit) {
+                    logger.info("Installed version is up to date with or newer than the cached latest version")
                     UserDefaults.standard.set(false, forKey: "update_available")
+                    UserDefaults.standard.removeObject(forKey: "latest_version")
                 }
             }
         }
