@@ -100,6 +100,9 @@
                                         </menuItem>
                                         <menuItem title="Machine Love" tag="2" keyEquivalent="M" id="kja-8h-AoM">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="menuItemClicked:" target="Voe-Tx-rLC" id="aV6-PY-UlA"/>
+                                            </connections>
                                         </menuItem>
                                     </items>
                                 </menu>
