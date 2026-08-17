@@ -9,7 +9,7 @@ permissions:
 
 env:
   TAP_OWNER: Solarphlare
-  TAP_REPO: homebrew-airmute
+  TAP_REPO: homebrew-tap
   CASK_PATH: Casks/airmute.rb
   TAP_BRANCH: master
 

@@ -22,7 +22,7 @@ https://gist.github.com/user-attachments/assets/f0c74cca-f60f-4415-9f00-cb6a0c23
 
     Or you can install AirMute via Homebrew:
     ```
-    brew tap solarphlare/airmute
+    brew tap solarphlare/tap
     brew install --cask airmute
     ```
 2. Head to the [Discord Developer Portal](https://discord.com/developers) and create a new application.
