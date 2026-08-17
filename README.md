@@ -11,6 +11,7 @@ https://gist.github.com/user-attachments/assets/f0c74cca-f60f-4415-9f00-cb6a0c23
 ## Features
 - Mute your Discord mic with your AirPods!
 - A simple, clean, and minimal UI that stays out of your way whilst also providing helpful information on the status of the app.
+- A fully notarized app! No need to override Gatekeeper just to run the app. (Available from the [releases](https://github.com/CominAtYou/AirMute/releases/latest) page)
 
 ## Requirements
 - A Mac (Intel or Apple Silicon) with macOS 14.0 or higher.
