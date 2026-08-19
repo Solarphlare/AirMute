@@ -26,7 +26,7 @@ https://gist.github.com/user-attachments/assets/f0c74cca-f60f-4415-9f00-cb6a0c23
     brew tap solarphlare/tap
     brew install --cask airmute
     ```
-2. Head to the [Discord Developer Portal](https://discord.com/developers) and create a new application.
+2. Head to the [Discord Developer Portal](https://discord.com/developers/applications) and create a new application.
 3. Click OAuth2 in the sidebar. Copy your client ID and client secret.
 4. Add a redirect URI to `http://localhost`.
 5. Launch the app, and click its menu bar icon (it looks like a person with waves) and select "Settings".
@@ -35,7 +35,9 @@ https://gist.github.com/user-attachments/assets/f0c74cca-f60f-4415-9f00-cb6a0c23
 7. Quit the app by clicking its menu bar icon and selecting "Quit".
 8. Open Discord if it isn't already open.
 9. Open the app again.
-10. If everything worked correctly, clicking the menu bar icon again should yield a line that says `Inactive - Not in Voice` or `Active - In Voice`.
+10. Discord will bring up a dialog asking you to authorize AirMute to modify your voice settings. Click "Authorize".
+    - This permission is necessary for AirMute to be able to mute and unmute you.
+11. If everything worked correctly, clicking the menu bar icon again should yield a line that says `Inactive - Not in Voice` or `Active - In Voice`.
 
 ## How does this work?
 The Discord allows any application to interface and issue commands to it (with your approval, of course) over RPC. One of the things that RPC allows for is controlling whether or not your mic is muted or not, meaning that the app is able to instruct Discord to toggle the microphone whenever the AirPods are clicked.
