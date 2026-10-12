@@ -6,7 +6,10 @@ extension AppDelegate {
         statusItem = NSMenuItem(title: statusItemTitle, action: nil, keyEquivalent: "")
         statusItem.isEnabled = false
         updateMenuItem.isHidden = !UserDefaults.standard.bool(forKey: "update_available")
-        updateMenuItem.image = NSImage(systemSymbolName: "square.and.arrow.down", accessibilityDescription: nil)!
+        updateMenuItem.image = NSImage(systemSymbolName: "arrow.down.circle", accessibilityDescription: nil)!
+        if #available(macOS 27.0, *) {
+            updateMenuItem.preferredImageVisibility = .visible
+        }
         
         menu.addItem(statusItem)
         menu.addItem(.separator())
@@ -26,6 +29,9 @@ extension AppDelegate {
         copyLogFileMenuItem.isAlternate = true
         copyLogFileMenuItem.keyEquivalentModifierMask = [.shift]
         copyLogFileMenuItem.image = NSImage(systemSymbolName: "square.and.arrow.down", accessibilityDescription: nil)!
+        if #available(macOS 27.0, *) {
+            copyLogFileMenuItem.preferredImageVisibility = .visible
+        }
         
         menu.addItem(copyLogFileMenuItem)
         
