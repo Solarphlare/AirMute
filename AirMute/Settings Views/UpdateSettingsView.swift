@@ -8,7 +8,7 @@ struct UpdateSettingsView: View {
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("A new version of AirMute is available.")
-                    Text("If you've installed AirMute trough Homebrew Cask, please update from there.")
+                    Text("If you've installed AirMute through Homebrew Cask, please update from there.")
                         .foregroundStyle(.secondary)
                         .font(.system(size: 11))
                 }
