@@ -45,13 +45,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         if UserDefaults.standard.bool(forKey: "update_available") {
             if let installedVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-                let installedVersionSplit = installedVersion.split(separator: ".").compactMap({ i in Int(i) })
+                let installedVersionSplit = UpdateChecker.parseVersion(installedVersion)
 
-                if let latestVersionSplit = UserDefaults.standard.array(forKey: "latest_version") as? [Int],
-                   !UpdateChecker.isVersion(latestVersionSplit, newerThan: installedVersionSplit) {
-                    logger.info("Installed version is up to date with or newer than the cached latest version")
+                if let latestVersionSplit = UserDefaults.standard.array(forKey: "latest_version") as? [Int] {
+                    if !UpdateChecker.isVersion(latestVersionSplit, newerThan: installedVersionSplit) {
+                        logger.info("Installed version is up to date with or newer than the cached latest version")
+                        UserDefaults.standard.set(false, forKey: "update_available")
+                        UserDefaults.standard.removeObject(forKey: "latest_version")
+                    }
+                }
+                else {
+                    logger.info("Missing or invalid cached latest_version while update_available is true; clearing stale flag")
                     UserDefaults.standard.set(false, forKey: "update_available")
-                    UserDefaults.standard.removeObject(forKey: "latest_version")
                 }
             }
         }
@@ -93,15 +98,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         
         NotificationCenter.default.addObserver(self, selector: #selector(audioCaptureDeviceWasDisconnected), name: AVCaptureDevice.wasDisconnectedNotification, object: nil)
         
-        if !UserDefaults.standard.bool(forKey: "update_available") {
-            let timer = Timer.scheduledTimer(withTimeInterval: 60 * 60 * 6, repeats: true) { _ in
-                Task {
-                    await UpdateChecker.checkForUpdates()
-                }
+        let timer = Timer.scheduledTimer(withTimeInterval: 60 * 60 * 6, repeats: true) { _ in
+            Task {
+                await UpdateChecker.checkForUpdates()
             }
-            
-            timer.fire()
         }
+        
+        timer.fire()
     }
     
     func connectToDiscord(_ rpc: RPC) {
